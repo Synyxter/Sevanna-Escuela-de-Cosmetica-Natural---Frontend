@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { WHATSAPP_NUMBER } from "@/lib/config";
 
 type FooterLink = { label: string; href: string };
 
@@ -29,7 +30,12 @@ const COLUMNS: { heading: string; links: FooterLink[] }[] = [
   },
 ];
 
-const SOCIALS = ["WhatsApp", "Instagram", "Facebook", "TikTok"];
+const SOCIALS: { slug: string; label: string; href: string }[] = [
+  { slug: "whatsapp", label: "WhatsApp", href: `https://wa.me/${WHATSAPP_NUMBER}` },
+  { slug: "instagram", label: "Instagram", href: "#" },
+  { slug: "facebook", label: "Facebook", href: "#" },
+  { slug: "tiktok", label: "TikTok", href: "#" },
+];
 
 export function Footer() {
   return (
@@ -40,11 +46,23 @@ export function Footer() {
           <p className="font-serif text-lg leading-body text-emerald-100 max-w-70 mt-3">
             Academia de cosmética natural. Conocimiento, creatividad y elaboración artesanal.
           </p>
-          <ul className="flex gap-4.5 mt-4.5 list-none p-0">
-            {SOCIALS.map((label) => (
-              <li key={label}>
-                <a href="#" className="font-sans text-xs tracking-label text-gold-300">
-                  {label}
+          <ul className="flex gap-4 mt-4.5 list-none p-0">
+            {SOCIALS.map(({ slug, label, href }) => (
+              <li key={slug}>
+                <a
+                  href={href}
+                  target={href === "#" ? undefined : "_blank"}
+                  rel={href === "#" ? undefined : "noopener noreferrer"}
+                  aria-label={`Sevanna en ${label}`}
+                  className="inline-flex opacity-85 hover:opacity-100 transition-opacity duration-240 ease-standard"
+                >
+                  <img
+                    src={`https://cdn.simpleicons.org/${slug}/C69F53`}
+                    alt=""
+                    aria-hidden="true"
+                    width={22}
+                    height={22}
+                  />
                 </a>
               </li>
             ))}
