@@ -120,6 +120,9 @@
   --space-9: 96px;
   --space-10: 128px;
 
+  /* Fixed site header height (kept in sync with Header.tsx) */
+  --header-h: 93px;
+
   /* Radii — soft, elegant; never pill-heavy on containers */
   --radius-xs: 4px;
   --radius-sm: 8px;

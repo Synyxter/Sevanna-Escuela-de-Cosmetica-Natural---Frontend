@@ -16,8 +16,7 @@ html {
   -webkit-text-size-adjust: 100%;
 }
 
-html,
-body {
+html {
   max-width: 100vw;
   overflow-x: hidden;
 }
@@ -32,6 +31,11 @@ body {
   letter-spacing: var(--ls-body);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+main {
+  display: block;
+  padding-top: var(--header-h);
 }
 
 a {
