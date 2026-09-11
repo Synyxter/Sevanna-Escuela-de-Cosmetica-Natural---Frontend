@@ -39,8 +39,8 @@ const SOCIALS: { slug: string; label: string; href: string }[] = [
 
 export function Footer() {
   return (
-    <footer role="contentinfo" className="bg-emerald-950 border-t border-hairline pt-14 pb-8 px-10 text-emerald-100">
-      <div className="max-w-content mx-auto grid grid-cols-[1.4fr_1fr_1fr_1fr] gap-10">
+    <footer role="contentinfo" className="bg-emerald-950 border-t border-hairline pt-14 pb-8 px-5 sm:px-8 lg:px-10 text-emerald-100">
+      <div className="max-w-content mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr] gap-8 lg:gap-10">
         <div>
           <span className="font-display font-semibold text-2xl tracking-[0.18em] text-gold-100">SEVANNA</span>
           <p className="font-serif text-lg leading-body text-emerald-100 max-w-70 mt-3">

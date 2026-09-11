@@ -16,7 +16,7 @@ export default async function TalleresPage() {
 
   return (
     <>
-      <section className="pt-18 px-10 pb-14 text-center bg-[linear-gradient(180deg,var(--cream-50),var(--cream-100))]">
+      <section className="pt-18 px-5 sm:px-8 lg:px-10 pb-14 text-center bg-[linear-gradient(180deg,var(--cream-50),var(--cream-100))]">
         <div className="flex justify-center">
           <SectionHeading
             light
@@ -29,7 +29,7 @@ export default async function TalleresPage() {
       {talleres ? (
         <Catalog items={talleres} categories={uniqueCategories(talleres)} basePath="/talleres" />
       ) : (
-        <p className="max-w-content mx-auto pt-0 px-10 pb-24 text-center font-serif text-xl text-muted">
+        <p className="max-w-content mx-auto pt-0 px-5 sm:px-8 lg:px-10 pb-24 text-center font-serif text-xl text-muted">
           No pudimos cargar los talleres en este momento. Intenta de nuevo en unos minutos.
         </p>
       )}

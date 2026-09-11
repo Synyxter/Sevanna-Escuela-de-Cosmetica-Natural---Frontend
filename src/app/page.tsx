@@ -30,11 +30,11 @@ function FeaturedRow({
   if (items.length === 0) return null;
 
   return (
-    <section className="pt-10 px-10 pb-8 max-w-content mx-auto">
+    <section className="pt-10 px-5 sm:px-8 lg:px-10 pb-8 max-w-content mx-auto">
       <Reveal>
         <SectionHeading light eyebrow={eyebrow} title={title} subtitle={subtitle} />
       </Reveal>
-      <div className="grid grid-cols-3 gap-7 mt-11">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-7 mt-11">
         {items.map((item, i) => (
           <Reveal key={item.slug} delay={i * 0.12}>
             <Link href={`${basePath}/${item.slug}`} className="no-underline">
@@ -63,7 +63,7 @@ export default async function HomePage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative py-32 px-10 text-center overflow-hidden bg-[radial-gradient(ellipse_62%_78%_at_center,rgba(250,246,238,0.86)_0%,rgba(250,246,238,0.62)_40%,rgba(250,246,238,0.28)_70%,rgba(250,246,238,0.05)_100%),url(/sevanna/hero-products.png)] bg-cover bg-center">
+      <section className="relative py-20 sm:py-26 lg:py-32 px-5 sm:px-8 lg:px-10 text-center overflow-hidden bg-[radial-gradient(ellipse_62%_78%_at_center,rgba(250,246,238,0.86)_0%,rgba(250,246,238,0.62)_40%,rgba(250,246,238,0.28)_70%,rgba(250,246,238,0.05)_100%),url(/sevanna/hero-products.png)] bg-cover bg-center">
         <div className="max-w-205 mx-auto flex flex-col items-center gap-5.5">
           <Reveal>
             <span className="font-sans text-xs font-semibold tracking-eyebrow uppercase text-gold-600">
@@ -105,7 +105,7 @@ export default async function HomePage() {
       </section>
 
       {/* Value props */}
-      <section className="py-16 px-10 max-w-content mx-auto grid grid-cols-3 gap-7">
+      <section className="py-16 px-5 sm:px-8 lg:px-10 max-w-content mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-7">
         {FEATURES.map(([icon, title, description]) => (
           <div key={title} className="flex flex-col gap-3 p-7 border border-hairline rounded-lg bg-card">
             <span className="text-accent-strong">
@@ -136,7 +136,7 @@ export default async function HomePage() {
       />
 
       {/* Quote band */}
-      <section className="py-20 px-10 mt-14 bg-emerald-600 text-center">
+      <section className="py-20 px-5 sm:px-8 lg:px-10 mt-14 bg-emerald-600 text-center">
         <div className="max-w-180 mx-auto">
           <Reveal>
             <h2 className="m-0 font-sans text-label font-bold tracking-[0.28em] uppercase text-gold-300">

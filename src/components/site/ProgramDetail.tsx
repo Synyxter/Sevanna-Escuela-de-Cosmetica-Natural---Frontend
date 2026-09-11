@@ -34,7 +34,7 @@ export function ProgramDetail({
 
   return (
     <>
-      <section className="bg-[linear-gradient(180deg,var(--cream-50),var(--cream-100))] pt-10 px-10 pb-0">
+      <section className="bg-[linear-gradient(180deg,var(--cream-50),var(--cream-100))] pt-10 px-5 sm:px-8 lg:px-10 pb-0">
         <div className="max-w-content mx-auto">
           <Link
             href={basePath}
@@ -43,7 +43,7 @@ export function ProgramDetail({
             <Icon name="arrow-left" size={16} /> {backLabel}
           </Link>
 
-          <div className="grid grid-cols-[1.1fr_0.9fr] gap-12 items-center pb-14">
+          <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-8 lg:gap-12 items-center pb-14">
             <div className="flex flex-col gap-4.5">
               <div className="flex gap-2.5">
                 <Badge tone={program.level}>{program.levelLabel}</Badge>
@@ -78,7 +78,7 @@ export function ProgramDetail({
         </div>
       </section>
 
-      <section className="max-w-content mx-auto pt-16 px-10 pb-24 grid grid-cols-[1fr_340px] gap-12 items-start">
+      <section className="max-w-content mx-auto pt-16 px-5 sm:px-8 lg:px-10 pb-24 grid grid-cols-1 lg:grid-cols-[1fr_340px] gap-8 lg:gap-12 items-start">
         <div>
           <SectionHeading
             light
@@ -91,7 +91,7 @@ export function ProgramDetail({
           <Accordion items={outline} defaultOpen={0} />
         </div>
 
-        <Card light className="sticky top-24 flex flex-col items-stretch gap-5 text-center">
+        <Card light className="lg:sticky lg:top-24 flex flex-col items-stretch gap-5 text-center">
           <div className="flex flex-col gap-1">
             <span className="font-sans text-xs font-semibold tracking-[0.2em] uppercase text-muted">
               Inversión

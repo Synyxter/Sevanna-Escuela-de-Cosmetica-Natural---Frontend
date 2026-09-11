@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <section className="max-w-narrow mx-auto pt-22 px-10 pb-24">
+    <section className="max-w-narrow mx-auto pt-22 px-5 sm:px-8 lg:px-10 pb-24">
       <SectionHeading
         light
         align="left"

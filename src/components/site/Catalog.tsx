@@ -60,9 +60,9 @@ export function Catalog({
   const shown = filteredSorted.slice((currentPage - 1) * PAGE_SIZE, currentPage * PAGE_SIZE);
 
   return (
-    <section className="max-w-content mx-auto pt-8 px-10 pb-24">
-      <div className="flex flex-wrap items-end justify-start gap-4 mb-9">
-        <div className="w-60">
+    <section className="max-w-content mx-auto pt-8 px-5 sm:px-8 lg:px-10 pb-24">
+      <div className="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-end justify-start gap-4 mb-9">
+        <div className="w-full sm:w-60">
           <Select
             label="Categoría"
             options={categories}
@@ -73,7 +73,7 @@ export function Catalog({
             }}
           />
         </div>
-        <div className="w-50">
+        <div className="w-full sm:w-50">
           <Select
             label="Ordenar por"
             options={[...SORTS]}
@@ -86,7 +86,7 @@ export function Catalog({
         </div>
       </div>
 
-      <div className="grid grid-cols-3 gap-7">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-7">
         {shown.map((item) => (
           <Link key={item.slug} href={`${basePath}/${item.slug}`} className="no-underline">
             <CourseCard {...item} className="h-full cursor-pointer" />
