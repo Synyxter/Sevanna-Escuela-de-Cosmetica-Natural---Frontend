@@ -9,6 +9,7 @@ export function IconButton({
   variant = "ghost",
   size = 40,
   label = "",
+  disabled = false,
   style = {},
   ...rest
 }) {
@@ -26,6 +27,7 @@ export function IconButton({
     <button
       type="button"
       aria-label={label || name}
+      disabled={disabled}
       style={{
         display: "inline-flex",
         alignItems: "center",
@@ -33,7 +35,8 @@ export function IconButton({
         width: size,
         height: size,
         borderRadius: "var(--radius-pill)",
-        cursor: "pointer",
+        cursor: disabled ? "not-allowed" : "pointer",
+        opacity: disabled ? 0.4 : 1,
         transition:
           "background var(--dur-base) var(--ease-standard), border-color var(--dur-base) var(--ease-standard)",
         ...(variants[variant] || variants.ghost),
