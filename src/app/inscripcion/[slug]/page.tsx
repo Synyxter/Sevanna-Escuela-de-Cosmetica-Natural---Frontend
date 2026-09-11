@@ -49,7 +49,7 @@ export default async function EnrollPage({ params }: Params) {
     <section className="min-h-[70vh] flex items-center justify-center pt-18 px-10 pb-24 bg-[linear-gradient(180deg,var(--cream-50),var(--cream-100))]">
       <Card light className="w-full max-w-140 flex flex-col items-center gap-6 text-center py-11 px-10">
         <span className="w-19 h-19 rounded-full flex items-center justify-center bg-[rgba(37,211,102,0.12)] border border-[rgba(37,211,102,0.4)] text-[#1FA855]">
-          <Icon name="message-circle" size={38} />
+          <img src="https://cdn.simpleicons.org/whatsapp/25D366" alt="WhatsApp" width={38} height={38} />
         </span>
 
         <div className="flex flex-col gap-3 items-center">
@@ -83,7 +83,7 @@ export default async function EnrollPage({ params }: Params) {
           rel="noopener noreferrer"
           className="w-full inline-flex items-center justify-center gap-2.5 py-4 px-6.5 rounded-full bg-[#25D366] text-[#08210F] font-sans text-sm font-semibold tracking-eyebrow uppercase shadow-[0_8px_24px_rgba(37,211,102,0.35)]"
         >
-          <Icon name="message-circle" size={20} color="#08210F" /> Escribir por WhatsApp
+          <img src="https://cdn.simpleicons.org/whatsapp/08210F" alt="" width={20} height={20} /> Escribir por WhatsApp
         </a>
 
         <Link href={`${basePath}/${program.slug}`}>
