@@ -1,0 +1,41 @@
+:root{
+  /* Families */
+  --font-display:'Cinzel',serif;            /* Roman inscriptional caps — wordmark & hero */
+  --font-serif:'Cormorant Garamond',serif;  /* editorial headings, quotes, elegant body */
+  --font-sans:'Montserrat',system-ui,sans-serif; /* UI, labels, letter-spaced eyebrows */
+
+  /* Fluid display scale (Cinzel — always uppercase, tracked) */
+  --fs-display:clamp(48px,7vw,88px); /* @kind font */
+  --fs-h1:clamp(34px,4.5vw,56px); /* @kind font */
+  --fs-h2:clamp(26px,3vw,38px); /* @kind font */
+
+  /* Serif editorial scale (Cormorant) */
+  --fs-lead:26px;   /* @kind font */
+  --fs-quote:30px;  /* @kind font */
+
+  /* Sans UI scale (Montserrat) */
+  --fs-body:16px;    /* @kind font */
+  --fs-body-sm:14px; /* @kind font */
+  --fs-label:13px;   /* @kind font */
+  --fs-eyebrow:12px; /* @kind font */
+  --fs-caption:11px; /* @kind font */
+
+  /* Weights */
+  --fw-light:300;    /* @kind font */
+  --fw-regular:400;  /* @kind font */
+  --fw-medium:500;   /* @kind font */
+  --fw-semibold:600; /* @kind font */
+  --fw-bold:700;     /* @kind font */
+
+  /* Line heights */
+  --lh-tight:1.05;   /* @kind other */
+  --lh-heading:1.18; /* @kind other */
+  --lh-body:1.6;     /* @kind other */
+  --lh-relaxed:1.75; /* @kind other */
+
+  /* Letter spacing — the brand leans on generous tracking for caps */
+  --ls-display:0.14em; /* @kind other */ /* SEVANNA wordmark spacing */
+  --ls-eyebrow:0.32em; /* @kind other */ /* ACADEMIA DE COSMÉTICA */
+  --ls-label:0.08em;   /* @kind other */
+  --ls-body:0.005em;   /* @kind other */
+}

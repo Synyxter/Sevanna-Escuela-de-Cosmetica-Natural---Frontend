@@ -1,0 +1,177 @@
+/* ============================================================================
+   Sevanna — Design tokens
+   Ported from "Sevanna Design System" (design-system/tokens/*.css).
+   The only change vs. source: font families point at the next/font CSS
+   variables wired up in src/app/layout.tsx instead of a Google Fonts @import.
+   ========================================================================== */
+
+:root {
+  /* ---- Families (self-hosted via next/font — see app/layout.tsx) ---- */
+  --font-display: var(--font-cinzel), "Cinzel", serif;
+  --font-serif: var(--font-cormorant), "Cormorant Garamond", serif;
+  --font-sans: var(--font-montserrat), system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  /* Fluid display scale (Cinzel — always uppercase, tracked) */
+  --fs-display: clamp(48px, 7vw, 88px);
+  --fs-h1: clamp(34px, 4.5vw, 56px);
+  --fs-h2: clamp(26px, 3vw, 38px);
+
+  /* Serif editorial scale (Cormorant) */
+  --fs-lead: 26px;
+  --fs-quote: 30px;
+
+  /* Sans UI scale (Montserrat) */
+  --fs-body: 16px;
+  --fs-body-sm: 14px;
+  --fs-label: 13px;
+  --fs-eyebrow: 12px;
+  --fs-caption: 11px;
+
+  /* Weights */
+  --fw-light: 300;
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+
+  /* Line heights */
+  --lh-tight: 1.05;
+  --lh-heading: 1.18;
+  --lh-body: 1.6;
+  --lh-relaxed: 1.75;
+
+  /* Letter spacing — the brand leans on generous tracking for caps */
+  --ls-display: 0.14em;
+  --ls-eyebrow: 0.32em;
+  --ls-label: 0.08em;
+  --ls-body: 0.005em;
+
+  /* ---- Brand base: Emerald ---- */
+  --emerald-950: #081a0f;
+  --emerald-900: #0e2517; /* signature background */
+  --emerald-800: #143726;
+  --emerald-700: #1b4632;
+  --emerald-600: #245a41;
+  --emerald-500: #357a58;
+  --emerald-300: #7fb99a;
+  --emerald-100: #d6e7dd;
+
+  /* ---- Brand base: Gold ---- */
+  --gold-700: #8c6a2e;
+  --gold-600: #ac853c;
+  --gold-500: #c69f53; /* signature gold */
+  --gold-400: #cba149;
+  --gold-300: #e3c072;
+  --gold-200: #f0d89b;
+  --gold-100: #fbf1d6;
+  --gold-highlight: #ffe681;
+
+  /* ---- Warm neutrals (light surfaces) ---- */
+  --cream-50: #faf6ee;
+  --cream-100: #f4eddf;
+  --cream-200: #e9dec9;
+  --ink-900: #1c2620;
+  --ink-700: #3b4640;
+  --ink-500: #657069;
+  --ink-300: #9aa39d;
+
+  /* ---- Semantic ---- */
+  --success: #357a58;
+  --warning: #c9962f;
+  --danger: #a63a2e;
+  --info: #2f6f8c;
+
+  /* ================= SEMANTIC ALIASES (dark, brand-default) ================= */
+  --bg-canvas: var(--emerald-900);
+  --bg-elevated: var(--emerald-800);
+  --surface-card: var(--emerald-800);
+  --surface-card-hover: var(--emerald-700);
+  --surface-inset: var(--emerald-950);
+
+  --text-strong: var(--gold-100);
+  --text-body: var(--emerald-100);
+  --text-muted: var(--emerald-300);
+  --text-on-gold: var(--emerald-950);
+
+  --accent: var(--gold-500);
+  --accent-hover: var(--gold-400);
+  --accent-strong: var(--gold-300);
+
+  --border-hairline: rgba(198, 159, 83, 0.22);
+  --border-strong: rgba(198, 159, 83, 0.45);
+  --divider: rgba(214, 231, 221, 0.12);
+
+  --focus-ring: rgba(227, 192, 114, 0.55);
+
+  /* Gold "foil" gradient used on wordmark & premium accents */
+  --gradient-gold: linear-gradient(135deg, #8c6a2e 0%, #e3c072 28%, #ffe681 48%, #c69f53 68%, #8c6a2e 100%);
+  --gradient-emerald: linear-gradient(160deg, #143726 0%, #0e2517 60%, #081a0f 100%);
+
+  /* Spacing — 4px base rhythm */
+  --space-0: 0;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+  --space-10: 128px;
+
+  /* Radii — soft, elegant; never pill-heavy on containers */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-xl: 28px;
+  --radius-pill: 999px;
+
+  /* Container widths */
+  --container-narrow: 680px;
+  --container: 1120px;
+  --container-wide: 1320px;
+
+  /* Shadows — soft, warm-tinted; cosmetic/luxury softness, never hard grey */
+  --shadow-xs: 0 1px 2px rgba(8, 26, 15, 0.28);
+  --shadow-sm: 0 4px 12px rgba(8, 26, 15, 0.3);
+  --shadow-md: 0 12px 28px rgba(8, 26, 15, 0.34);
+  --shadow-lg: 0 28px 60px rgba(8, 26, 15, 0.42);
+  --shadow-gold: 0 8px 24px rgba(140, 106, 46, 0.35);
+
+  /* Inner sheen used on gold buttons for the "foil" feel */
+  --sheen-gold: inset 0 1px 0 rgba(255, 255, 255, 0.35), inset 0 -1px 0 rgba(0, 0, 0, 0.18);
+
+  /* Motion — soft, unhurried; nothing bouncy */
+  --ease-standard: cubic-bezier(0.4, 0.14, 0.3, 1);
+  --ease-out: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --dur-fast: 140ms;
+  --dur-base: 240ms;
+  --dur-slow: 420ms;
+
+  /* Blur (glass overlays on emerald) */
+  --blur-panel: saturate(140%) blur(14px);
+}
+
+/* ================= LIGHT SCOPE (cream surfaces) ================= */
+.on-light {
+  --bg-canvas: var(--cream-50);
+  --bg-elevated: #ffffff;
+  --surface-card: #ffffff;
+  --surface-card-hover: var(--cream-100);
+  --surface-inset: var(--cream-100);
+
+  --text-strong: var(--emerald-900);
+  --text-body: var(--ink-900);
+  --text-muted: var(--ink-500);
+  --text-on-gold: var(--emerald-950);
+
+  --accent: var(--gold-600);
+  --accent-hover: var(--gold-700);
+  --accent-strong: var(--gold-700);
+
+  --border-hairline: rgba(140, 106, 46, 0.22);
+  --border-strong: rgba(140, 106, 46, 0.4);
+  --divider: rgba(28, 38, 32, 0.1);
+}

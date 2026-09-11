@@ -1,0 +1,33 @@
+<!-- @dsCard group="Components" viewport="700x460" name="Content · Cards, Badges, Accordion" subtitle="Course card, badges, tags, section heading, temario" -->
+<!DOCTYPE html><html><head><meta charset="utf-8"><link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"></script>
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{margin:0;background:var(--cream-50);padding:30px;font-family:var(--font-sans)}.grid{display:grid;grid-template-columns:300px 1fr;gap:28px;align-items:start}.row{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}</style></head>
+<body class="on-light"><div id="r"></div>
+<script type="text/babel">
+const {CourseCard,Badge,Tag,SectionHeading,Accordion}=window.SevannaDesignSystem_5220c2;
+ReactDOM.createRoot(document.getElementById('r')).render(
+  <div className="grid">
+    <CourseCard category="Jabones" title="Jabones artesanales en frío" level="intermediate" levelLabel="Intermedio" modality="Híbrido" duration="8 h" price="$120.000"/>
+    <div>
+      <SectionHeading align="left" eyebrow="Componentes de contenido" title="Insignias, etiquetas y temario"/>
+      <div className="row">
+        <Badge tone="basic">Básico</Badge>
+        <Badge tone="intermediate">Intermedio</Badge>
+        <Badge tone="advanced">Avanzado</Badge>
+        <Badge tone="success">Inscrito</Badge>
+      </div>
+      <div className="row">
+        <Tag selected>Todos</Tag><Tag>Velas</Tag><Tag>Jabones</Tag><Tag>Labiales</Tag>
+      </div>
+      <Accordion items={[
+        {title:'Módulo 1 · Materiales', content:'Ceras vegetales, mechas, aromas naturales y utensilios de laboratorio.'},
+        {title:'Módulo 2 · Formulación', content:'Cálculo de porcentajes, punto de fusión y curado.'},
+      ]} defaultOpen={0}/>
+    </div>
+  </div>
+);
+</script></body></html>

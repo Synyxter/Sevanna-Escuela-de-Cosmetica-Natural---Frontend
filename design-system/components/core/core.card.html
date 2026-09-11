@@ -1,0 +1,33 @@
+<!-- @dsCard group="Components" viewport="700x300" name="Core · Buttons & Icons" subtitle="Actions, icon buttons, thin-line icons" -->
+<!DOCTYPE html><html><head><meta charset="utf-8"><link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"></script>
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{margin:0;background:var(--cream-50);padding:30px;font-family:var(--font-sans)}#r>div{display:flex;flex-direction:column;gap:22px}.grp{display:flex;gap:14px;align-items:center;flex-wrap:wrap}</style></head>
+<body class="on-light"><div id="r"></div>
+<script type="text/babel">
+const {Button,IconButton,Icon}=window.SevannaDesignSystem_5220c2;
+ReactDOM.createRoot(document.getElementById('r')).render(
+  <div>
+    <div className="grp">
+      <Button variant="primary" size="lg">Inscribirme</Button>
+      <Button variant="secondary">Ver temario</Button>
+      <Button variant="solid">Guardar</Button>
+      <Button variant="ghost">Cancelar</Button>
+      <Button variant="primary" disabled>No disponible</Button>
+    </div>
+    <div className="grp">
+      <Button variant="primary" size="sm" iconLeft={<Icon name="sparkles" size={15} color="var(--gold-300)"/>}>Nuevo</Button>
+      <Button variant="secondary" iconRight={<Icon name="arrow-right" size={16}/>}>Continuar</Button>
+      <IconButton name="heart" variant="ghost"/>
+      <IconButton name="arrow-right" variant="gold"/>
+      <IconButton name="check" variant="filled"/>
+      <Icon name="leaf" size={26} color="var(--accent-strong)"/>
+      <Icon name="flame" size={26} color="var(--accent-strong)"/>
+      <Icon name="droplet" size={26} color="var(--accent-strong)"/>
+    </div>
+  </div>
+);
+</script></body></html>

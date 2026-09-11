@@ -1,0 +1,28 @@
+<!-- @dsCard group="Components" viewport="700x340" name="Forms" subtitle="Inputs, select, checkbox, switch" -->
+<!DOCTYPE html><html><head><meta charset="utf-8"><link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"></script>
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{margin:0;background:var(--cream-50);padding:30px;font-family:var(--font-sans)}.grid{display:grid;grid-template-columns:1fr 1fr;gap:20px 26px;align-items:start}.stack{display:flex;flex-direction:column;gap:16px}</style></head>
+<body class="on-light"><div id="r"></div>
+<script type="text/babel">
+const {Input,Select,Checkbox,Switch}=window.SevannaDesignSystem_5220c2;
+ReactDOM.createRoot(document.getElementById('r')).render(
+  <div className="grid">
+    <Input label="Nombre completo" placeholder="María Fernanda"/>
+    <Select label="Nivel" options={['Básico','Intermedio','Avanzado']}/>
+    <Input label="Correo" type="email" error="Ingresa un correo válido"/>
+    <Select label="Modalidad" options={['Presencial','Virtual','Híbrido']}/>
+    <div className="stack">
+      <Checkbox label="Acepto los términos" defaultChecked/>
+      <Checkbox label="Recibir novedades"/>
+    </div>
+    <div className="stack">
+      <Switch label="Recordarme" defaultChecked/>
+      <Switch label="Modo híbrido"/>
+    </div>
+  </div>
+);
+</script></body></html>

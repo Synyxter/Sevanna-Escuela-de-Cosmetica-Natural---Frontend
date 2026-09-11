@@ -1,0 +1,5 @@
+/* Sevanna webfonts — matched from Google Fonts (see readme.md "Font substitution").
+   Cinzel  → inscriptional Roman caps for the SEVANNA wordmark & display.
+   Cormorant Garamond → editorial serif for headings, quotes, elegant body.
+   Montserrat → clean geometric sans for UI, labels, letter-spaced tags. */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Montserrat:wght@300;400;500;600;700&display=swap');

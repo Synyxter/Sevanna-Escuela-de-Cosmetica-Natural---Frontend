@@ -1,0 +1,63 @@
+<!-- @dsCard group="Website" viewport="1280x760" name="Sevanna · Sitio web" subtitle="Home → catálogo → curso, interactivo" -->
+<!-- @startingPoint section="Website" subtitle="Academy marketing site" viewport="1280x820" -->
+<!DOCTYPE html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sevanna · Academia de Cosmética</title>
+<link rel="stylesheet" href="../../styles.css">
+<style>html,body{margin:0}body{background:var(--cream-50);color:var(--text-body)}a{color:var(--accent-strong);text-decoration:none}a:hover{color:var(--accent)}
+[data-reveal]{opacity:0;transform:translateY(20px);transition:opacity .7s var(--ease-out),transform .7s var(--ease-out)}
+[data-reveal].sv-in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){[data-reveal]{opacity:1!important;transform:none!important;transition:none}}</style>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"></script>
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<script src="../../_ds_bundle.js"></script>
+<script src="data.js"></script>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel" src="Header.jsx"></script>
+<script type="text/babel" src="Footer.jsx"></script>
+<script type="text/babel" src="HomeScreen.jsx"></script>
+<script type="text/babel" src="CatalogScreen.jsx"></script>
+<script type="text/babel" src="CourseScreen.jsx"></script>
+<script type="text/babel" src="EnrollScreen.jsx"></script>
+<script type="text/babel">
+function App(){
+  const [route,setRoute]=React.useState('home');
+  const [course,setCourse]=React.useState(null);
+  const go=(r,c)=>{ if(c)setCourse(c); setRoute(r); window.scrollTo({top:0}); };
+  return (
+    <div className="on-light">
+      <window.Header route={route} go={go}/>
+      {route==='home' && <window.HomeScreen go={go}/>}
+      {route==='catalog' && <window.CatalogScreen go={go}/>}
+      {route==='course' && <window.CourseScreen course={course} go={go}/>}
+      {route==='enroll' && <window.EnrollScreen course={course} go={go}/>}
+      <window.Footer/>
+    </div>
+  );
+}
+function mount(){
+  if(!(window.Header&&window.Footer&&window.HomeScreen&&window.CatalogScreen&&window.CourseScreen&&window.EnrollScreen)){return setTimeout(mount,40);}
+  ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+}
+mount();
+</script>
+<script>
+(function(){
+  var io = ('IntersectionObserver' in window) ? new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('sv-in'); io.unobserve(e.target); } });
+  }, { threshold:0.15, rootMargin:'0px 0px -8% 0px' }) : null;
+  function scan(){
+    document.querySelectorAll('[data-reveal]:not([data-seen])').forEach(function(el){
+      el.setAttribute('data-seen','1');
+      if(io){ io.observe(el); } else { el.classList.add('sv-in'); }
+    });
+  }
+  var root = document.getElementById('root');
+  if(root){ new MutationObserver(scan).observe(root,{childList:true,subtree:true}); }
+  scan();
+})();
+</script>
+</body></html>
