@@ -1,87 +1,95 @@
+@import "tailwindcss";
 @import "../design-system/tokens.css";
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-}
-
-html {
-  height: 100%;
-  -webkit-text-size-adjust: 100%;
-}
-
-html {
-  max-width: 100vw;
-  overflow-x: hidden;
-}
-
-body {
-  min-height: 100%;
-  background: var(--bg-canvas);
-  color: var(--text-body);
-  font-family: var(--font-sans);
-  font-size: var(--fs-body);
-  line-height: var(--lh-body);
-  letter-spacing: var(--ls-body);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-main {
-  display: block;
-  padding-top: var(--header-h);
-}
-
-a {
-  color: var(--accent-strong);
-  text-decoration: none;
-  transition: color var(--dur-fast) var(--ease-standard);
-}
-
-a:hover {
-  color: var(--accent);
-}
-
-img {
-  max-width: 100%;
-}
-
-/* Keyboard-only focus ring, brand gold */
-:focus-visible {
-  outline: 2px solid var(--gold-300);
-  outline-offset: 3px;
-  border-radius: 6px;
-}
-
-/* Scroll-reveal helper used by marketing sections */
-[data-reveal] {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
-}
-
-[data-reveal].is-visible {
-  opacity: 1;
-  transform: none;
-}
-
-@media (prefers-reduced-motion: reduce) {
+/* Everything below must live in Tailwind's `base` layer — left unlayered,
+   these plain-selector rules (`*`, `html`, `body`, `a`, …) would outrank
+   EVERY Tailwind utility class regardless of specificity, since unlayered
+   CSS always wins over layered CSS per the cascade-layers spec. That
+   silently zeroed out every padding and margin utility site-wide. */
+@layer base {
   *,
   *::before,
   *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+    box-sizing: border-box;
   }
 
+  * {
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    height: 100%;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  html {
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+
+  body {
+    min-height: 100%;
+    background: var(--bg-canvas);
+    color: var(--text-body);
+    font-family: var(--font-sans);
+    font-size: var(--fs-body);
+    line-height: var(--lh-body);
+    letter-spacing: var(--ls-body);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  main {
+    display: block;
+    padding-top: var(--header-h);
+  }
+
+  a {
+    color: var(--accent-strong);
+    text-decoration: none;
+    transition: color var(--dur-fast) var(--ease-standard);
+  }
+
+  a:hover {
+    color: var(--accent);
+  }
+
+  img {
+    max-width: 100%;
+  }
+
+  /* Keyboard-only focus ring, brand gold */
+  :focus-visible {
+    outline: 2px solid var(--gold-300);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+
+  /* Scroll-reveal helper used by marketing sections */
   [data-reveal] {
-    opacity: 1 !important;
-    transform: none !important;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
+  }
+
+  [data-reveal].is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+
+    [data-reveal] {
+      opacity: 1 !important;
+      transform: none !important;
+    }
   }
 }

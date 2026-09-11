@@ -13,77 +13,43 @@ export function SectionHeading({
   align = "center",
   ornament = true,
   light = false,
-  style = {},
+  className = "",
 }) {
   const centered = align === "center";
   return (
     <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        gap: "var(--space-3)",
-        alignItems: centered ? "center" : "flex-start",
-        textAlign: centered ? "center" : "left",
-        ...style,
-      }}
+      className={[
+        "flex flex-col gap-3",
+        centered ? "items-center text-center" : "items-start text-left",
+        className,
+      ]
+        .filter(Boolean)
+        .join(" ")}
     >
       {eyebrow && (
-        <span
-          style={{
-            fontFamily: "var(--font-sans)",
-            fontSize: "var(--fs-eyebrow)",
-            fontWeight: "var(--fw-semibold)",
-            letterSpacing: "var(--ls-eyebrow)",
-            textTransform: "uppercase",
-            color: "var(--accent-strong)",
-          }}
-        >
+        <span className="font-sans text-xs font-semibold tracking-eyebrow uppercase text-accent-strong">
           {eyebrow}
         </span>
       )}
       {title && (
         <h2
-          style={{
-            margin: 0,
-            fontFamily: "var(--font-serif)",
-            fontWeight: "var(--fw-semibold)",
-            fontSize: "var(--fs-h2)",
-            lineHeight: "var(--lh-heading)",
-            color: light ? "var(--emerald-900)" : "var(--text-strong)",
-          }}
+          className={[
+            "m-0 font-serif font-semibold text-h2 leading-heading",
+            light ? "text-emerald-900" : "text-strong",
+          ].join(" ")}
         >
           {title}
         </h2>
       )}
       {ornament && (
-        <span
-          aria-hidden="true"
-          style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: 8,
-            margin: "2px 0",
-            color: "var(--accent)",
-          }}
-        >
-          <span style={{ width: 54, height: 1, background: "linear-gradient(90deg,transparent,var(--accent))" }} />
-          <span style={{ width: 6, height: 6, transform: "rotate(45deg)", background: "var(--accent)" }} />
-          <span style={{ width: 54, height: 1, background: "linear-gradient(90deg,var(--accent),transparent)" }} />
+        <span aria-hidden="true" className="inline-flex items-center gap-2 my-0.5 text-accent">
+          <span className="w-13.5 h-px bg-[linear-gradient(90deg,transparent,var(--accent))]" />
+          <span className="w-1.5 h-1.5 rotate-45 bg-accent" />
+          <span className="w-13.5 h-px bg-[linear-gradient(90deg,var(--accent),transparent)]" />
         </span>
       )}
       {subtitle && (
-        <p
-          style={{
-            margin: 0,
-            maxWidth: 560,
-            fontFamily: "var(--font-serif)",
-            fontSize: "var(--fs-lead)",
-            lineHeight: "var(--lh-body)",
-            color: "var(--text-muted)",
-          }}
-        >
-          {subtitle}
-        </p>
+        <p className="m-0 max-w-140 font-serif text-lead leading-body text-muted">{subtitle}</p>
       )}
     </div>
   );

@@ -46,101 +46,32 @@ export default async function EnrollPage({ params }: Params) {
   const waLink = `https://wa.me/${WHATSAPP_NUMBER}?text=${message}`;
 
   return (
-    <section
-      style={{
-        minHeight: "70vh",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        padding: "72px 40px 96px",
-        background: "linear-gradient(180deg,var(--cream-50),var(--cream-100))",
-      }}
-    >
-      <Card
-        light
-        style={{
-          width: "100%",
-          maxWidth: 560,
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          gap: 24,
-          textAlign: "center",
-          padding: "44px 40px",
-        }}
-      >
-        <span
-          style={{
-            width: 76,
-            height: 76,
-            borderRadius: "var(--radius-pill)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            background: "rgba(37,211,102,0.12)",
-            border: "1px solid rgba(37,211,102,0.4)",
-            color: "#1FA855",
-          }}
-        >
+    <section className="min-h-[70vh] flex items-center justify-center pt-18 px-10 pb-24 bg-[linear-gradient(180deg,var(--cream-50),var(--cream-100))]">
+      <Card light className="w-full max-w-140 flex flex-col items-center gap-6 text-center py-11 px-10">
+        <span className="w-19 h-19 rounded-full flex items-center justify-center bg-[rgba(37,211,102,0.12)] border border-[rgba(37,211,102,0.4)] text-[#1FA855]">
           <Icon name="message-circle" size={38} />
         </span>
 
-        <div style={{ display: "flex", flexDirection: "column", gap: 12, alignItems: "center" }}>
+        <div className="flex flex-col gap-3 items-center">
           <Badge tone="gold">Último paso</Badge>
-          <h1
-            style={{
-              margin: 0,
-              fontFamily: "var(--font-serif)",
-              fontWeight: 600,
-              fontSize: "clamp(30px,4vw,44px)",
-              lineHeight: 1.12,
-              color: "var(--emerald-900)",
-            }}
-          >
+          <h1 className="m-0 font-serif font-semibold text-[clamp(30px,4vw,44px)] leading-[1.12] text-emerald-900">
             Para completar tu inscripción, contáctanos por WhatsApp
           </h1>
-          <p style={{ margin: 0, maxWidth: 420, fontFamily: "var(--font-serif)", fontSize: 20, lineHeight: 1.55, color: "var(--ink-700)" }}>
-            Reservaste <em style={{ color: "var(--accent-strong)" }}>{program.title}</em>. Termina tu registro en un
+          <p className="m-0 max-w-105 font-serif text-xl leading-[1.55] text-ink-700">
+            Reservaste <em className="text-accent-strong">{program.title}</em>. Termina tu registro en un
             breve chat con nuestro equipo.
           </p>
         </div>
 
-        <div
-          style={{
-            width: "100%",
-            display: "flex",
-            flexDirection: "column",
-            gap: 14,
-            textAlign: "left",
-            padding: "20px 0",
-            borderTop: "1px solid var(--divider)",
-            borderBottom: "1px solid var(--divider)",
-          }}
-        >
+        <div className="w-full flex flex-col gap-3.5 text-left py-5 px-0 border-t border-b border-divider">
           {STEPS.map(([icon, title, description]) => (
-            <div key={title} style={{ display: "flex", gap: 14, alignItems: "flex-start" }}>
-              <span
-                style={{
-                  flex: "0 0 auto",
-                  width: 34,
-                  height: 34,
-                  borderRadius: "var(--radius-pill)",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  color: "var(--accent-strong)",
-                  border: "1px solid var(--border-strong)",
-                }}
-              >
+            <div key={title} className="flex gap-3.5 items-start">
+              <span className="flex-none w-8.5 h-8.5 rounded-full flex items-center justify-center text-accent-strong border border-border-strong">
                 <Icon name={icon} size={17} />
               </span>
               <div>
-                <div style={{ fontFamily: "var(--font-sans)", fontSize: 15, fontWeight: 600, color: "var(--text-strong)" }}>
-                  {title}
-                </div>
-                <div style={{ fontFamily: "var(--font-sans)", fontSize: 13.5, lineHeight: 1.5, color: "var(--text-muted)" }}>
-                  {description}
-                </div>
+                <div className="font-sans text-[15px] font-semibold text-strong">{title}</div>
+                <div className="font-sans text-[13.5px] leading-normal text-muted">{description}</div>
               </div>
             </div>
           ))}
@@ -150,23 +81,7 @@ export default async function EnrollPage({ params }: Params) {
           href={waLink}
           target="_blank"
           rel="noopener noreferrer"
-          style={{
-            width: "100%",
-            display: "inline-flex",
-            alignItems: "center",
-            justifyContent: "center",
-            gap: 10,
-            padding: "16px 26px",
-            borderRadius: "var(--radius-pill)",
-            background: "#25D366",
-            color: "#08210F",
-            fontFamily: "var(--font-sans)",
-            fontSize: 14,
-            fontWeight: 600,
-            letterSpacing: "var(--ls-eyebrow)",
-            textTransform: "uppercase",
-            boxShadow: "0 8px 24px rgba(37,211,102,0.35)",
-          }}
+          className="w-full inline-flex items-center justify-center gap-2.5 py-4 px-6.5 rounded-full bg-[#25D366] text-[#08210F] font-sans text-sm font-semibold tracking-eyebrow uppercase shadow-[0_8px_24px_rgba(37,211,102,0.35)]"
         >
           <Icon name="message-circle" size={20} color="#08210F" /> Escribir por WhatsApp
         </a>

@@ -60,18 +60,9 @@ export function Catalog({
   const shown = filteredSorted.slice((currentPage - 1) * PAGE_SIZE, currentPage * PAGE_SIZE);
 
   return (
-    <section style={{ maxWidth: "var(--container)", margin: "0 auto", padding: "32px 40px 96px" }}>
-      <div
-        style={{
-          display: "flex",
-          flexWrap: "wrap",
-          alignItems: "flex-end",
-          justifyContent: "flex-start",
-          gap: 16,
-          marginBottom: 36,
-        }}
-      >
-        <div style={{ width: 240 }}>
+    <section className="max-w-content mx-auto pt-8 px-10 pb-24">
+      <div className="flex flex-wrap items-end justify-start gap-4 mb-9">
+        <div className="w-60">
           <Select
             label="Categoría"
             options={categories}
@@ -82,7 +73,7 @@ export function Catalog({
             }}
           />
         </div>
-        <div style={{ width: 200 }}>
+        <div className="w-50">
           <Select
             label="Ordenar por"
             options={[...SORTS]}
@@ -95,46 +86,27 @@ export function Catalog({
         </div>
       </div>
 
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 28 }}>
+      <div className="grid grid-cols-3 gap-7">
         {shown.map((item) => (
-          <Link key={item.slug} href={`${basePath}/${item.slug}`} style={{ textDecoration: "none" }}>
-            <CourseCard {...item} style={{ height: "100%", cursor: "pointer" }} />
+          <Link key={item.slug} href={`${basePath}/${item.slug}`} className="no-underline">
+            <CourseCard {...item} className="h-full cursor-pointer" />
           </Link>
         ))}
       </div>
 
       {shown.length === 0 && (
-        <p style={{ fontFamily: "var(--font-serif)", fontSize: 20, color: "var(--text-muted)" }}>
-          No hay resultados para esta categoría.
-        </p>
+        <p className="font-serif text-xl text-muted">No hay resultados para esta categoría.</p>
       )}
 
       {totalPages > 1 && (
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            gap: 20,
-            marginTop: 44,
-          }}
-        >
+        <div className="flex items-center justify-center gap-5 mt-11">
           <IconButton
             name="chevron-left"
             label="Página anterior"
             disabled={currentPage === 1}
             onClick={() => setPage((p) => Math.max(1, p - 1))}
           />
-          <span
-            style={{
-              fontFamily: "var(--font-sans)",
-              fontSize: "var(--fs-label)",
-              letterSpacing: "var(--ls-label)",
-              color: "var(--text-muted)",
-              minWidth: 120,
-              textAlign: "center",
-            }}
-          >
+          <span className="font-sans text-label tracking-label text-muted min-w-30 text-center">
             Página {currentPage} de {totalPages}
           </span>
           <IconButton

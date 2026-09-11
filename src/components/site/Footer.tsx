@@ -33,68 +33,17 @@ const SOCIALS = ["WhatsApp", "Instagram", "Facebook", "TikTok"];
 
 export function Footer() {
   return (
-    <footer
-      role="contentinfo"
-      style={{
-        background: "var(--emerald-950)",
-        borderTop: "1px solid var(--border-hairline)",
-        padding: "56px 40px 32px",
-        color: "var(--emerald-100)",
-      }}
-    >
-      <div
-        style={{
-          maxWidth: "var(--container)",
-          margin: "0 auto",
-          display: "grid",
-          gridTemplateColumns: "1.4fr 1fr 1fr 1fr",
-          gap: 40,
-        }}
-      >
+    <footer role="contentinfo" className="bg-emerald-950 border-t border-hairline pt-14 pb-8 px-10 text-emerald-100">
+      <div className="max-w-content mx-auto grid grid-cols-[1.4fr_1fr_1fr_1fr] gap-10">
         <div>
-          <span
-            style={{
-              fontFamily: "var(--font-display)",
-              fontWeight: 600,
-              fontSize: 24,
-              letterSpacing: "0.18em",
-              color: "var(--gold-100)",
-            }}
-          >
-            SEVANNA
-          </span>
-          <p
-            style={{
-              fontFamily: "var(--font-serif)",
-              fontSize: 18,
-              lineHeight: 1.6,
-              color: "var(--emerald-100)",
-              maxWidth: 280,
-              marginTop: 12,
-            }}
-          >
+          <span className="font-display font-semibold text-2xl tracking-[0.18em] text-gold-100">SEVANNA</span>
+          <p className="font-serif text-lg leading-body text-emerald-100 max-w-70 mt-3">
             Academia de cosmética natural. Conocimiento, creatividad y elaboración artesanal.
           </p>
-          <ul
-            style={{
-              display: "flex",
-              gap: 18,
-              marginTop: 18,
-              listStyle: "none",
-              padding: 0,
-            }}
-          >
+          <ul className="flex gap-4.5 mt-4.5 list-none p-0">
             {SOCIALS.map((label) => (
               <li key={label}>
-                <a
-                  href="#"
-                  style={{
-                    fontFamily: "var(--font-sans)",
-                    fontSize: 12,
-                    letterSpacing: "0.08em",
-                    color: "var(--gold-300)",
-                  }}
-                >
+                <a href="#" className="font-sans text-xs tracking-label text-gold-300">
                   {label}
                 </a>
               </li>
@@ -104,31 +53,13 @@ export function Footer() {
 
         {COLUMNS.map(({ heading, links }) => (
           <nav key={heading} aria-label={heading}>
-            <h2
-              style={{
-                fontFamily: "var(--font-sans)",
-                fontSize: 12,
-                fontWeight: 600,
-                letterSpacing: "0.2em",
-                textTransform: "uppercase",
-                color: "var(--gold-300)",
-                margin: "0 0 16px",
-              }}
-            >
+            <h2 className="font-sans text-xs font-semibold tracking-[0.2em] uppercase text-gold-300 m-0 mb-4">
               {heading}
             </h2>
-            <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+            <ul className="list-none p-0 m-0">
               {links.map((link) => (
-                <li key={link.label} style={{ marginBottom: 10 }}>
-                  <Link
-                    href={link.href}
-                    style={{
-                      display: "inline-block",
-                      fontFamily: "var(--font-sans)",
-                      fontSize: 14,
-                      color: "var(--emerald-100)",
-                    }}
-                  >
+                <li key={link.label} className="mb-2.5">
+                  <Link href={link.href} className="inline-block font-sans text-sm text-emerald-100">
                     {link.label}
                   </Link>
                 </li>
@@ -138,22 +69,7 @@ export function Footer() {
         ))}
       </div>
 
-      <div
-        style={{
-          maxWidth: "var(--container)",
-          margin: "40px auto 0",
-          paddingTop: 20,
-          borderTop: "1px solid var(--divider)",
-          display: "flex",
-          justifyContent: "space-between",
-          flexWrap: "wrap",
-          gap: 8,
-          fontFamily: "var(--font-sans)",
-          fontSize: 12,
-          letterSpacing: "0.06em",
-          color: "var(--emerald-300)",
-        }}
-      >
+      <div className="max-w-content mx-auto mt-10 pt-5 border-t border-divider flex justify-between flex-wrap gap-2 font-sans text-xs tracking-[0.06em] text-emerald-300">
         <span>© {new Date().getFullYear()} Sevanna · Academia de Cosmética</span>
         <span>Hecho a mano con ingredientes naturales</span>
       </div>

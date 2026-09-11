@@ -18,37 +18,14 @@ export function Header() {
   return (
     <header
       role="banner"
-      style={{
-        position: "fixed",
-        top: 0,
-        left: 0,
-        right: 0,
-        width: "100%",
-        zIndex: 20,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
-        padding: "14px 28px",
-        background: "var(--cream-50)",
-        borderBottom: "1px solid var(--border-hairline)",
-      }}
+      className="fixed top-0 left-0 right-0 w-full z-20 flex items-center justify-between py-3.5 px-7 bg-cream-50 border-b border-hairline"
     >
-      <Link href="/" aria-label="Sevanna — ir al inicio" style={{ display: "flex", alignItems: "center" }}>
-        <Image
-          src="/sevanna/logo-wordmark.png"
-          alt="Sevanna"
-          width={972}
-          height={610}
-          priority
-          style={{ width: "auto", height: 64 }}
-        />
+      <Link href="/" aria-label="Sevanna — ir al inicio" className="flex items-center">
+        <Image src="/sevanna/logo-wordmark.png" alt="Sevanna" width={972} height={610} priority className="w-auto h-16" />
       </Link>
 
-      <nav
-        aria-label="Navegación principal"
-        style={{ position: "absolute", left: "50%", transform: "translateX(-50%)" }}
-      >
-        <ul style={{ display: "flex", gap: 24, listStyle: "none", margin: 0, padding: 0 }}>
+      <nav aria-label="Navegación principal" className="absolute left-1/2 -translate-x-1/2">
+        <ul className="flex gap-6 list-none m-0 p-0">
           {LINKS.map((link, i) => {
             const active =
               link.href === "/"
@@ -59,17 +36,11 @@ export function Header() {
                 <Link
                   href={link.href}
                   aria-current={active ? "page" : undefined}
-                  style={{
-                    display: "inline-block",
-                    fontFamily: "var(--font-sans)",
-                    fontSize: 13,
-                    fontWeight: 700,
-                    letterSpacing: "0.12em",
-                    padding: "6px 2px",
-                    color: "var(--emerald-700)",
-                    borderBottom: `3px solid ${active ? "var(--gold-600)" : "transparent"}`,
-                    transition: "border-color var(--dur-fast) var(--ease-standard)",
-                  }}
+                  className={[
+                    "inline-block font-sans text-label font-bold tracking-[0.12em] py-1.5 px-0.5 text-emerald-700",
+                    "border-b-[3px] transition-colors duration-140 ease-standard",
+                    active ? "border-gold-600" : "border-transparent",
+                  ].join(" ")}
                 >
                   {link.label}
                 </Link>
@@ -79,12 +50,12 @@ export function Header() {
         </ul>
       </nav>
 
-      <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
+      <div className="flex items-center gap-4">
         <Link href="/cursos">
           <Button
             variant="primary"
             size="sm"
-            style={{ paddingTop: 14, paddingBottom: 14 }}
+            className="py-3.5!"
             iconLeft={<Icon name="leaf" size={16} color="var(--gold-300)" />}
           >
             Ver cursos

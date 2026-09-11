@@ -177,4 +177,140 @@
   --border-hairline: rgba(140, 106, 46, 0.22);
   --border-strong: rgba(140, 106, 46, 0.4);
   --divider: rgba(28, 38, 32, 0.1);
+
+  /* Re-point the Tailwind semantic aliases too: a custom property's computed
+     value is substituted where it's DECLARED (at :root, in @theme below) and
+     that frozen result is what inherits — redefining --surface-card etc. here
+     does not retroactively change --color-card's already-computed value
+     unless --color-card is redeclared at this same scope. */
+  --color-canvas: var(--bg-canvas);
+  --color-elevated: var(--bg-elevated);
+  --color-card: var(--surface-card);
+  --color-card-hover: var(--surface-card-hover);
+  --color-inset: var(--surface-inset);
+  --color-strong: var(--text-strong);
+  --color-body: var(--text-body);
+  --color-muted: var(--text-muted);
+  --color-on-gold: var(--text-on-gold);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-strong: var(--accent-strong);
+  --color-hairline: var(--border-hairline);
+  --color-border-strong: var(--border-strong);
+  --color-divider: var(--divider);
+}
+
+/* ============================================================================
+   Tailwind theme mapping
+   Semantic aliases (canvas/elevated/card/strong/body/muted/accent/hairline/…)
+   are wired via var() so they keep resolving against :root vs .on-light at
+   runtime. Anything that would collide with its own source variable name
+   (font-*, radius-*, shadow-*, container-narrow/wide, ease-standard/out —
+   Tailwind's default namespace already uses those exact names) is inlined
+   as a literal instead of var()'d, to avoid a self-referencing custom
+   property.
+   ========================================================================== */
+@theme {
+  /* Brand scales */
+  --color-emerald-950: var(--emerald-950);
+  --color-emerald-900: var(--emerald-900);
+  --color-emerald-800: var(--emerald-800);
+  --color-emerald-700: var(--emerald-700);
+  --color-emerald-600: var(--emerald-600);
+  --color-emerald-500: var(--emerald-500);
+  --color-emerald-300: var(--emerald-300);
+  --color-emerald-100: var(--emerald-100);
+
+  --color-gold-700: var(--gold-700);
+  --color-gold-600: var(--gold-600);
+  --color-gold-500: var(--gold-500);
+  --color-gold-400: var(--gold-400);
+  --color-gold-300: var(--gold-300);
+  --color-gold-200: var(--gold-200);
+  --color-gold-100: var(--gold-100);
+  --color-gold-highlight: var(--gold-highlight);
+
+  --color-cream-50: var(--cream-50);
+  --color-cream-100: var(--cream-100);
+  --color-cream-200: var(--cream-200);
+
+  --color-ink-900: var(--ink-900);
+  --color-ink-700: var(--ink-700);
+  --color-ink-500: var(--ink-500);
+  --color-ink-300: var(--ink-300);
+
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+  --color-info: var(--info);
+
+  /* Semantic aliases (dark by default, overridden under .on-light) */
+  --color-canvas: var(--bg-canvas);
+  --color-elevated: var(--bg-elevated);
+  --color-card: var(--surface-card);
+  --color-card-hover: var(--surface-card-hover);
+  --color-inset: var(--surface-inset);
+
+  --color-strong: var(--text-strong);
+  --color-body: var(--text-body);
+  --color-muted: var(--text-muted);
+  --color-on-gold: var(--text-on-gold);
+
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-strong: var(--accent-strong);
+
+  --color-hairline: var(--border-hairline);
+  --color-border-strong: var(--border-strong);
+  --color-divider: var(--divider);
+  --color-focus-ring: var(--focus-ring);
+
+  /* Font families (literal — collides with source var name otherwise) */
+  --font-sans: var(--font-montserrat), system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-serif: var(--font-cormorant), "Cormorant Garamond", serif;
+  --font-display: var(--font-cinzel), "Cinzel", serif;
+
+  /* Font sizes without a matching Tailwind default (fs-body/body-sm/eyebrow
+     already match text-base/text-sm/text-xs and need no override) */
+  --text-display: var(--fs-display);
+  --text-h1: var(--fs-h1);
+  --text-h2: var(--fs-h2);
+  --text-lead: var(--fs-lead);
+  --text-quote: var(--fs-quote);
+  --text-label: var(--fs-label);
+  --text-caption: var(--fs-caption);
+
+  --tracking-display: var(--ls-display);
+  --tracking-eyebrow: var(--ls-eyebrow);
+  --tracking-label: var(--ls-label);
+  --tracking-body: var(--ls-body);
+
+  --leading-tight: var(--lh-tight);
+  --leading-heading: var(--lh-heading);
+  --leading-body: var(--lh-body);
+  --leading-relaxed: var(--lh-relaxed);
+
+  /* Radii (literal — collides with source var name otherwise) */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-xl: 28px;
+
+  /* Max-width scale → max-w-narrow / max-w-content / max-w-wide */
+  --container-narrow: 680px;
+  --container-content: var(--container);
+  --container-wide: 1320px;
+
+  /* Shadows (literal — collides with source var name otherwise) */
+  --shadow-xs: 0 1px 2px rgba(8, 26, 15, 0.28);
+  --shadow-sm: 0 4px 12px rgba(8, 26, 15, 0.3);
+  --shadow-md: 0 12px 28px rgba(8, 26, 15, 0.34);
+  --shadow-lg: 0 28px 60px rgba(8, 26, 15, 0.42);
+  --shadow-gold: 0 8px 24px rgba(140, 106, 46, 0.35);
+
+  /* Easing (literal — collides with source var name otherwise; durations
+     are applied as plain arbitrary numbers, e.g. duration-140/240/420) */
+  --ease-standard: cubic-bezier(0.4, 0.14, 0.3, 1);
+  --ease-out: cubic-bezier(0.22, 0.61, 0.36, 1);
 }

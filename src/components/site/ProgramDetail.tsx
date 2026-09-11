@@ -34,67 +34,30 @@ export function ProgramDetail({
 
   return (
     <>
-      <section style={{ background: "linear-gradient(180deg,var(--cream-50),var(--cream-100))", padding: "40px 40px 0" }}>
-        <div style={{ maxWidth: "var(--container)", margin: "0 auto" }}>
+      <section className="bg-[linear-gradient(180deg,var(--cream-50),var(--cream-100))] pt-10 px-10 pb-0">
+        <div className="max-w-content mx-auto">
           <Link
             href={basePath}
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: 8,
-              fontFamily: "var(--font-sans)",
-              fontSize: 13,
-              letterSpacing: "0.1em",
-              textTransform: "uppercase",
-              color: "var(--text-muted)",
-              marginBottom: 28,
-            }}
+            className="inline-flex items-center gap-2 font-sans text-label tracking-[0.1em] uppercase text-muted mb-7"
           >
             <Icon name="arrow-left" size={16} /> {backLabel}
           </Link>
 
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "1.1fr 0.9fr",
-              gap: 48,
-              alignItems: "center",
-              paddingBottom: 56,
-            }}
-          >
-            <div style={{ display: "flex", flexDirection: "column", gap: 18 }}>
-              <div style={{ display: "flex", gap: 10 }}>
+          <div className="grid grid-cols-[1.1fr_0.9fr] gap-12 items-center pb-14">
+            <div className="flex flex-col gap-4.5">
+              <div className="flex gap-2.5">
                 <Badge tone={program.level}>{program.levelLabel}</Badge>
                 <Badge tone="gold">{program.category}</Badge>
               </div>
-              <h1
-                style={{
-                  margin: 0,
-                  fontFamily: "var(--font-serif)",
-                  fontWeight: 600,
-                  fontSize: "clamp(34px,4.6vw,54px)",
-                  lineHeight: 1.1,
-                  color: "var(--emerald-900)",
-                }}
-              >
+              <h1 className="m-0 font-serif font-semibold text-[clamp(34px,4.6vw,54px)] leading-[1.1] text-emerald-900">
                 {program.title}
               </h1>
-              <p style={{ margin: 0, fontFamily: "var(--font-serif)", fontSize: 22, lineHeight: 1.6, color: "var(--ink-700)" }}>
-                {program.blurb}
-              </p>
-              <div style={{ display: "flex", flexWrap: "wrap", gap: 22, marginTop: 6 }}>
+              <p className="m-0 font-serif text-[22px] leading-body text-ink-700">{program.blurb}</p>
+              <div className="flex flex-wrap gap-5.5 mt-1.5">
                 {meta.map(([icon, text]) => (
                   <span
                     key={text}
-                    style={{
-                      display: "inline-flex",
-                      alignItems: "center",
-                      gap: 8,
-                      fontFamily: "var(--font-sans)",
-                      fontSize: 13,
-                      letterSpacing: "0.06em",
-                      color: "var(--text-muted)",
-                    }}
+                    className="inline-flex items-center gap-2 font-sans text-label tracking-[0.06em] text-muted"
                   >
                     <Icon name={icon} size={16} color="var(--accent-strong)" />
                     {text}
@@ -104,16 +67,9 @@ export function ProgramDetail({
             </div>
 
             <div
+              className="aspect-4/3 rounded-xl overflow-hidden border border-border-strong flex items-center justify-center text-border-strong"
               style={{
-                aspectRatio: "4/3",
-                borderRadius: "var(--radius-xl)",
-                overflow: "hidden",
                 background: program.image ? `center/cover no-repeat url(${program.image})` : "var(--emerald-800)",
-                border: "1px solid var(--border-strong)",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                color: "var(--border-strong)",
               }}
             >
               {!program.image && <Icon name="flower-2" size={72} strokeWidth={0.9} />}
@@ -122,17 +78,7 @@ export function ProgramDetail({
         </div>
       </section>
 
-      <section
-        style={{
-          maxWidth: "var(--container)",
-          margin: "0 auto",
-          padding: "64px 40px 96px",
-          display: "grid",
-          gridTemplateColumns: "1fr 340px",
-          gap: 48,
-          alignItems: "start",
-        }}
-      >
+      <section className="max-w-content mx-auto pt-16 px-10 pb-24 grid grid-cols-[1fr_340px] gap-12 items-start">
         <div>
           <SectionHeading
             light
@@ -140,68 +86,27 @@ export function ProgramDetail({
             eyebrow={outlineEyebrow}
             title={outlineTitle}
             ornament={false}
-            style={{ marginBottom: 28 }}
+            className="mb-7"
           />
           <Accordion items={outline} defaultOpen={0} />
         </div>
 
-        <Card
-          light
-          style={{
-            position: "sticky",
-            top: 96,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "stretch",
-            gap: 20,
-            textAlign: "center",
-          }}
-        >
-          <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
-            <span
-              style={{
-                fontFamily: "var(--font-sans)",
-                fontSize: 12,
-                fontWeight: 600,
-                letterSpacing: "0.2em",
-                textTransform: "uppercase",
-                color: "var(--text-muted)",
-              }}
-            >
+        <Card light className="sticky top-24 flex flex-col items-stretch gap-5 text-center">
+          <div className="flex flex-col gap-1">
+            <span className="font-sans text-xs font-semibold tracking-[0.2em] uppercase text-muted">
               Inversión
             </span>
-            <span style={{ fontFamily: "var(--font-display)", fontSize: 38, letterSpacing: "0.03em", color: "var(--accent-strong)" }}>
-              {program.price}
-            </span>
+            <span className="font-display text-[38px] tracking-[0.03em] text-accent-strong">{program.price}</span>
           </div>
-          <div
-            style={{
-              borderTop: "1px solid var(--divider)",
-              paddingTop: 18,
-              display: "flex",
-              flexDirection: "column",
-              gap: 12,
-              textAlign: "left",
-            }}
-          >
+          <div className="border-t border-divider pt-4.5 flex flex-col gap-3 text-left">
             {includes.map((item) => (
-              <span
-                key={item}
-                style={{
-                  display: "flex",
-                  gap: 10,
-                  alignItems: "center",
-                  fontFamily: "var(--font-sans)",
-                  fontSize: 14,
-                  color: "var(--text-body)",
-                }}
-              >
+              <span key={item} className="flex gap-2.5 items-center font-sans text-sm text-body">
                 <Icon name="check" size={17} color="var(--accent)" />
                 {item}
               </span>
             ))}
           </div>
-          <Link href={`/inscripcion/${program.slug}`} style={{ display: "block" }}>
+          <Link href={`/inscripcion/${program.slug}`} className="block">
             <Button variant="primary" size="lg" fullWidth>
               Inscribirme ahora
             </Button>

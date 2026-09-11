@@ -15,18 +15,7 @@ export default function GlobalError({
   }, [error]);
 
   return (
-    <section
-      style={{
-        minHeight: "60vh",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        gap: 24,
-        padding: "96px 40px",
-        textAlign: "center",
-      }}
-    >
+    <section className="min-h-[60vh] flex flex-col items-center justify-center gap-6 py-24 px-10 text-center">
       <SectionHeading
         light
         eyebrow="Algo salió mal"

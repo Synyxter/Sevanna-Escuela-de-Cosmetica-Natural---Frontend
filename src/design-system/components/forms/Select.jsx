@@ -10,56 +10,30 @@ export function Select({
   value,
   defaultValue,
   disabled = false,
-  style = {},
+  className = "",
   ...rest
 }) {
   const opts = options.map((o) => (typeof o === "string" ? { value: o, label: o } : o));
   return (
-    <label style={{ display: "flex", flexDirection: "column", gap: "var(--space-2)", width: "100%" }}>
+    <label className="flex flex-col gap-2 w-full">
       {label && (
-        <span
-          style={{
-            fontFamily: "var(--font-sans)",
-            fontSize: "var(--fs-eyebrow)",
-            fontWeight: "var(--fw-semibold)",
-            letterSpacing: "var(--ls-label)",
-            textTransform: "uppercase",
-            color: "var(--text-muted)",
-          }}
-        >
-          {label}
-        </span>
+        <span className="font-sans text-xs font-semibold tracking-label uppercase text-muted">{label}</span>
       )}
-      <span style={{ position: "relative", display: "block" }}>
+      <span className="relative block">
         <select
           value={value}
           defaultValue={defaultValue}
           disabled={disabled}
-          style={{
-            width: "100%",
-            boxSizing: "border-box",
-            appearance: "none",
-            WebkitAppearance: "none",
-            padding: "13px 42px 13px 16px",
-            fontFamily: "var(--font-sans)",
-            fontSize: "var(--fs-body-sm)",
-            color: "var(--text-body)",
-            background: "var(--surface-inset)",
-            border: "1px solid var(--border-hairline)",
-            borderRadius: "var(--radius-sm)",
-            outline: "none",
-            cursor: "pointer",
-            opacity: disabled ? 0.55 : 1,
-            ...style,
-          }}
-          onFocus={(e) => {
-            e.currentTarget.style.borderColor = "var(--accent)";
-            e.currentTarget.style.boxShadow = "0 0 0 3px var(--focus-ring)";
-          }}
-          onBlur={(e) => {
-            e.currentTarget.style.borderColor = "var(--border-hairline)";
-            e.currentTarget.style.boxShadow = "none";
-          }}
+          className={[
+            "box-border w-full appearance-none py-3.25 pl-4 pr-10.5",
+            "font-sans text-sm text-body bg-inset border border-hairline rounded-sm outline-none cursor-pointer",
+            "transition-[border-color,box-shadow] duration-240 ease-standard",
+            "focus:border-accent focus:ring-3 focus:ring-focus-ring",
+            disabled ? "opacity-55" : "",
+            className,
+          ]
+            .filter(Boolean)
+            .join(" ")}
           {...rest}
         >
           {opts.map((o) => (
@@ -68,16 +42,7 @@ export function Select({
             </option>
           ))}
         </select>
-        <span
-          style={{
-            position: "absolute",
-            right: 14,
-            top: "50%",
-            transform: "translateY(-50%)",
-            pointerEvents: "none",
-            color: "var(--accent-strong)",
-          }}
-        >
+        <span className="absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none text-accent-strong">
           <Icon name="chevron-down" size={18} />
         </span>
       </span>

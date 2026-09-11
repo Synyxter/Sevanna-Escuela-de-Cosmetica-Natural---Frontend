@@ -9,25 +9,14 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <section style={{ maxWidth: "var(--container-narrow)", margin: "0 auto", padding: "88px 40px 96px" }}>
+    <section className="max-w-narrow mx-auto pt-22 px-10 pb-24">
       <SectionHeading
         light
         align="left"
         eyebrow="Academia de Cosmética Natural"
         title="Sobre Sevanna"
       />
-      <div
-        style={{
-          marginTop: 28,
-          display: "flex",
-          flexDirection: "column",
-          gap: 20,
-          fontFamily: "var(--font-serif)",
-          fontSize: 20,
-          lineHeight: 1.7,
-          color: "var(--ink-700)",
-        }}
-      >
+      <div className="mt-7 flex flex-col gap-5 font-serif text-xl leading-[1.7] text-ink-700">
         <p>
           Sevanna es una academia especializada en cosmética natural. Ofrecemos cursos y talleres
           —presenciales, virtuales e híbridos— para aprender a elaborar velas, jabones, labiales,
