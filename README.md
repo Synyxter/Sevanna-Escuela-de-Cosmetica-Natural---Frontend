@@ -19,6 +19,12 @@ npm run build    # build de producción
 npm run lint
 ```
 
+## Flujo de trabajo
+
+Ramas con **Git Flow** (`main` / `develop` / `feature/*` / `release/*` /
+`hotfix/*`) y mensajes de commit con **Conventional Commits**, validados por
+hooks de `husky`. Ver [CONTRIBUTING.md](CONTRIBUTING.md) para la guía completa.
+
 ## Estructura
 
 ```text
