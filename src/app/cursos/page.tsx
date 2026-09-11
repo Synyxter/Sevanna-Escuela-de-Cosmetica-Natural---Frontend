@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { SectionHeading } from "@/design-system";
 import { Catalog } from "@/components/site/Catalog";
-import { categories, courses } from "@/lib/courses";
+import { safe } from "@/lib/api";
+import { getCourses } from "@/lib/courses";
+import { uniqueCategories } from "@/lib/mapping";
 
 export const metadata: Metadata = {
   title: "Cursos",
@@ -9,7 +11,9 @@ export const metadata: Metadata = {
     "Programas completos para aprender cosmética natural desde cero hasta nivel profesional.",
 };
 
-export default function CoursesPage() {
+export default async function CoursesPage() {
+  const courses = await safe(getCourses(), null);
+
   return (
     <>
       <section
@@ -28,7 +32,23 @@ export default function CoursesPage() {
           />
         </div>
       </section>
-      <Catalog items={courses} categories={categories} basePath="/cursos" />
+      {courses ? (
+        <Catalog items={courses} categories={uniqueCategories(courses)} basePath="/cursos" />
+      ) : (
+        <p
+          style={{
+            maxWidth: "var(--container)",
+            margin: "0 auto",
+            padding: "0 40px 96px",
+            textAlign: "center",
+            fontFamily: "var(--font-serif)",
+            fontSize: 20,
+            color: "var(--text-muted)",
+          }}
+        >
+          No pudimos cargar los cursos en este momento. Intenta de nuevo en unos minutos.
+        </p>
+      )}
     </>
   );
 }

@@ -1,10 +1,10 @@
-// Unified view over the academy's offerings — cursos + talleres. Slugs are unique
-// across both lists, so a single lookup works for shared flows (e.g. inscripción).
+// Unified view over the academy's offerings — cursos + talleres — both served by
+// the same Sevanna API `/courses` resource (see src/lib/mapping.js for how the
+// two are told apart). Used by flows that don't care which kind it is, like
+// /inscripcion/[slug].
 
-import { courses } from "./courses";
-import { talleres } from "./talleres";
-
-export const programs = [...courses, ...talleres];
+import { apiFetch } from "./api";
+import { toCatalogItem, buildOutline } from "./mapping";
 
 /** Per-kind labels and routing. `kind` is "curso" | "taller". */
 export const KIND_META = {
@@ -20,10 +20,18 @@ export const KIND_META = {
   },
 };
 
-export function getProgram(slug) {
-  return programs.find((p) => p.slug === slug);
-}
-
 export function kindMeta(kind) {
   return KIND_META[kind] ?? KIND_META.curso;
+}
+
+// `limit=100` covers the current catalog (~30 items) in a single page. If it
+// ever grows past that, this needs real pagination against `/courses`.
+export async function getAllPrograms() {
+  const page = await apiFetch("/courses?limit=100");
+  return page.items.map(toCatalogItem);
+}
+
+export async function getProgramBySlug(slug) {
+  const detail = await apiFetch(`/courses/${slug}`);
+  return { program: toCatalogItem(detail), outline: buildOutline(detail) };
 }

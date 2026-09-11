@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { SectionHeading } from "@/design-system";
 import { Catalog } from "@/components/site/Catalog";
-import { tallerCategories, talleres } from "@/lib/talleres";
+import { safe } from "@/lib/api";
+import { getTalleres } from "@/lib/talleres";
+import { uniqueCategories } from "@/lib/mapping";
 
 export const metadata: Metadata = {
   title: "Talleres",
@@ -9,7 +11,9 @@ export const metadata: Metadata = {
     "Sesiones cortas y prácticas de cosmética natural: creas y te llevas tu producto el mismo día.",
 };
 
-export default function TalleresPage() {
+export default async function TalleresPage() {
+  const talleres = await safe(getTalleres(), null);
+
   return (
     <>
       <section
@@ -28,7 +32,23 @@ export default function TalleresPage() {
           />
         </div>
       </section>
-      <Catalog items={talleres} categories={tallerCategories} basePath="/talleres" />
+      {talleres ? (
+        <Catalog items={talleres} categories={uniqueCategories(talleres)} basePath="/talleres" />
+      ) : (
+        <p
+          style={{
+            maxWidth: "var(--container)",
+            margin: "0 auto",
+            padding: "0 40px 96px",
+            textAlign: "center",
+            fontFamily: "var(--font-serif)",
+            fontSize: 20,
+            color: "var(--text-muted)",
+          }}
+        >
+          No pudimos cargar los talleres en este momento. Intenta de nuevo en unos minutos.
+        </p>
+      )}
     </>
   );
 }

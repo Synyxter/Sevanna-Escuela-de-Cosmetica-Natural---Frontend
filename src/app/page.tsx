@@ -2,8 +2,9 @@ import Link from "next/link";
 import { Button, Icon, SectionHeading, CourseCard } from "@/design-system";
 import { Reveal } from "@/components/site/Reveal";
 import type { CatalogItem } from "@/components/site/Catalog";
-import { courses } from "@/lib/courses";
-import { talleres } from "@/lib/talleres";
+import { safe } from "@/lib/api";
+import { getCourses } from "@/lib/courses";
+import { getTalleres } from "@/lib/talleres";
 
 const FEATURES: [string, string, string][] = [
   ["leaf", "Ingredientes naturales", "Trabaja con ceras, aceites y activos botánicos reales."],
@@ -26,6 +27,8 @@ function FeaturedRow({
   basePath: string;
   ctaLabel: string;
 }) {
+  if (items.length === 0) return null;
+
   return (
     <section style={{ padding: "40px 40px 32px", maxWidth: "var(--container)", margin: "0 auto" }}>
       <Reveal>
@@ -51,7 +54,12 @@ function FeaturedRow({
   );
 }
 
-export default function HomePage() {
+export default async function HomePage() {
+  const [courses, talleres] = await Promise.all([
+    safe(getCourses(), [] as CatalogItem[]),
+    safe(getTalleres(), [] as CatalogItem[]),
+  ]);
+
   return (
     <>
       {/* Hero */}

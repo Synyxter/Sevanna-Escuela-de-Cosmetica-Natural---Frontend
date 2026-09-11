@@ -1,20 +1,23 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import type { CatalogItem } from "@/components/site/Catalog";
 import { Badge, Button, Card, Icon } from "@/design-system";
+import { ApiError, safe } from "@/lib/api";
 import { WHATSAPP_NUMBER } from "@/lib/config";
-import { getProgram, kindMeta, programs } from "@/lib/programs";
+import { getAllPrograms, getProgramBySlug, kindMeta } from "@/lib/programs";
 
 type Params = { params: Promise<{ slug: string }> };
 
-export function generateStaticParams() {
+export async function generateStaticParams() {
+  const programs: CatalogItem[] = await safe(getAllPrograms(), []);
   return programs.map((program) => ({ slug: program.slug }));
 }
 
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { slug } = await params;
-  const program = getProgram(slug);
-  return { title: program ? `Inscripción · ${program.title}` : "Inscripción" };
+  const data = await safe(getProgramBySlug(slug), null);
+  return { title: data ? `Inscripción · ${data.program.title}` : "Inscripción" };
 }
 
 const STEPS: [string, string, string][] = [
@@ -25,9 +28,16 @@ const STEPS: [string, string, string][] = [
 
 export default async function EnrollPage({ params }: Params) {
   const { slug } = await params;
-  const program = getProgram(slug);
-  if (!program) notFound();
 
+  let data;
+  try {
+    data = await getProgramBySlug(slug);
+  } catch (err) {
+    if (err instanceof ApiError && err.status === 404) notFound();
+    throw err;
+  }
+
+  const { program } = data;
   const { label: kindLabel, basePath } = kindMeta(program.kind);
 
   const message = encodeURIComponent(

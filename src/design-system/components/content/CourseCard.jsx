@@ -136,14 +136,18 @@ export function CourseCard({
             letterSpacing: "var(--ls-label)",
           }}
         >
-          <span style={{ display: "inline-flex", alignItems: "center", gap: 6 }}>
-            <Icon name="map-pin" size={14} />
-            {modality}
-          </span>
-          <span style={{ display: "inline-flex", alignItems: "center", gap: 6 }}>
-            <Icon name="clock" size={14} />
-            {duration}
-          </span>
+          {modality && (
+            <span style={{ display: "inline-flex", alignItems: "center", gap: 6 }}>
+              <Icon name="map-pin" size={14} />
+              {modality}
+            </span>
+          )}
+          {duration && (
+            <span style={{ display: "inline-flex", alignItems: "center", gap: 6 }}>
+              <Icon name="clock" size={14} />
+              {duration}
+            </span>
+          )}
         </div>
         {price && (
           <div
