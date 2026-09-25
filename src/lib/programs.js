@@ -24,11 +24,19 @@ export function kindMeta(kind) {
   return KIND_META[kind] ?? KIND_META.curso;
 }
 
-// `limit=100` covers the current catalog (~30 items) in a single page. If it
-// ever grows past that, this needs real pagination against `/courses`.
+// The API caps `limit` at 100, so fetch the first page, then any remaining
+// pages in parallel, and return the whole catalog in one list.
+const PAGE_LIMIT = 100;
+
 export async function getAllPrograms() {
-  const page = await apiFetch("/courses?limit=100");
-  return page.items.map(toCatalogItem);
+  const first = await apiFetch(`/courses?limit=${PAGE_LIMIT}&page=1`);
+  const totalPages = first.pagination?.total_pages ?? 1;
+  const rest = await Promise.all(
+    Array.from({ length: totalPages - 1 }, (_, i) =>
+      apiFetch(`/courses?limit=${PAGE_LIMIT}&page=${i + 2}`),
+    ),
+  );
+  return [first, ...rest].flatMap((page) => page.items).map(toCatalogItem);
 }
 
 export async function getProgramBySlug(slug) {

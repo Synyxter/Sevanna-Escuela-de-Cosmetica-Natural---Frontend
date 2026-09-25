@@ -2,13 +2,9 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
-import { CourseCard, IconButton, Select } from "@/design-system";
+import { CourseCard, Select } from "@/design-system";
 
 const SORTS = ["Más recientes", "Precio: menor", "Precio: mayor", "Duración"] as const;
-
-// Two rows of the 3-column grid — small enough that pagination is visible even
-// for a short list (e.g. talleres), large enough to not feel choppy.
-const PAGE_SIZE = 6;
 
 export type CatalogItem = {
   slug: string;
@@ -43,7 +39,6 @@ export function Catalog({
 }) {
   const [category, setCategory] = useState("Todos");
   const [sort, setSort] = useState<(typeof SORTS)[number]>("Más recientes");
-  const [page, setPage] = useState(1);
 
   const filteredSorted = useMemo(() => {
     const filtered =
@@ -54,10 +49,6 @@ export function Catalog({
     if (sort === "Duración") sorted.sort((a, b) => durationValue(b.duration) - durationValue(a.duration));
     return sorted;
   }, [items, category, sort]);
-
-  const totalPages = Math.max(1, Math.ceil(filteredSorted.length / PAGE_SIZE));
-  const currentPage = Math.min(page, totalPages);
-  const shown = filteredSorted.slice((currentPage - 1) * PAGE_SIZE, currentPage * PAGE_SIZE);
 
   return (
     <section className="max-w-content mx-auto pt-8 px-5 sm:px-8 lg:px-10 pb-24">
@@ -72,10 +63,7 @@ export function Catalog({
             label="Categoría"
             options={categories}
             value={category}
-            onChange={(e) => {
-              setCategory(e.target.value);
-              setPage(1);
-            }}
+            onChange={(e) => setCategory(e.target.value)}
           />
         </div>
         <div className="w-full sm:w-44">
@@ -83,44 +71,21 @@ export function Catalog({
             label="Ordenar por"
             options={[...SORTS]}
             value={sort}
-            onChange={(e) => {
-              setSort(e.target.value as (typeof SORTS)[number]);
-              setPage(1);
-            }}
+            onChange={(e) => setSort(e.target.value as (typeof SORTS)[number])}
           />
         </div>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-7">
-        {shown.map((item) => (
+        {filteredSorted.map((item) => (
           <Link key={item.slug} href={`${basePath}/${item.slug}`} className="no-underline">
             <CourseCard title={item.title} price={item.price} image={item.image} className="h-full cursor-pointer" />
           </Link>
         ))}
       </div>
 
-      {shown.length === 0 && (
+      {filteredSorted.length === 0 && (
         <p className="font-serif text-xl text-muted">No hay resultados para esta categoría.</p>
-      )}
-
-      {totalPages > 1 && (
-        <div className="flex items-center justify-center gap-5 mt-11">
-          <IconButton
-            name="chevron-left"
-            label="Página anterior"
-            disabled={currentPage === 1}
-            onClick={() => setPage((p) => Math.max(1, p - 1))}
-          />
-          <span className="font-sans text-label tracking-label text-muted min-w-30 text-center">
-            Página {currentPage} de {totalPages}
-          </span>
-          <IconButton
-            name="chevron-right"
-            label="Página siguiente"
-            disabled={currentPage === totalPages}
-            onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
-          />
-        </div>
       )}
     </section>
   );
