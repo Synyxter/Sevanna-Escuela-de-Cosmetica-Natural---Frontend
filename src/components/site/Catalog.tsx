@@ -62,7 +62,12 @@ export function Catalog({
   return (
     <section className="max-w-content mx-auto pt-8 px-5 sm:px-8 lg:px-10 pb-24">
       <div className="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-end justify-start gap-4 mb-9">
-        <div className="w-full sm:w-60">
+        <p className="m-0 sm:mr-auto sm:py-3.25 font-sans text-sm text-muted">
+          {filteredSorted.length === 1
+            ? "Mostrando 1 resultado"
+            : `Mostrando los ${filteredSorted.length} resultados`}
+        </p>
+        <div className="w-full sm:w-48">
           <Select
             label="Categoría"
             options={categories}
@@ -73,7 +78,7 @@ export function Catalog({
             }}
           />
         </div>
-        <div className="w-full sm:w-50">
+        <div className="w-full sm:w-44">
           <Select
             label="Ordenar por"
             options={[...SORTS]}
