@@ -38,7 +38,7 @@ function FeaturedRow({
         {items.map((item, i) => (
           <Reveal key={item.slug} delay={i * 0.12}>
             <Link href={`${basePath}/${item.slug}`} className="no-underline">
-              <CourseCard {...item} className="h-full cursor-pointer" />
+              <CourseCard title={item.title} price={item.price} image={item.image} className="h-full cursor-pointer" />
             </Link>
           </Reveal>
         ))}

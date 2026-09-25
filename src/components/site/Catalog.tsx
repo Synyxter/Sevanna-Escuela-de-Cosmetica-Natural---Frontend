@@ -89,7 +89,7 @@ export function Catalog({
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-7">
         {shown.map((item) => (
           <Link key={item.slug} href={`${basePath}/${item.slug}`} className="no-underline">
-            <CourseCard {...item} className="h-full cursor-pointer" />
+            <CourseCard title={item.title} price={item.price} image={item.image} className="h-full cursor-pointer" />
           </Link>
         ))}
       </div>

@@ -4,15 +4,16 @@ import { Badge } from "./Badge.jsx";
 import { Icon } from "../core/Icon.jsx";
 
 /**
- * Course catalog card — image well, level badge, title, meta row, price.
+ * Course catalog card — image well, title, price, plus optional level badge,
+ * category and meta row (each is only rendered when passed).
  * The image well shows an emerald-to-gold placeholder unless `image` is given.
  */
 export function CourseCard({
   title = "Curso",
   level = "basic",
-  levelLabel = "Básico",
-  modality = "Presencial",
-  duration = "4 h",
+  levelLabel = "",
+  modality = "",
+  duration = "",
   price = "",
   image = "",
   category = "",
@@ -48,38 +49,42 @@ export function CourseCard({
         {image && (
           <span className="absolute inset-x-0 top-0 h-[46%] pointer-events-none bg-[linear-gradient(180deg,rgba(8,26,15,0.55),transparent)]" />
         )}
-        <span
-          className={[
-            "absolute top-3.5 left-3.5 rounded-full",
-            image ? "backdrop-blur-[6px] backdrop-saturate-140 shadow-[0_2px_10px_rgba(8,26,15,0.45)]" : "",
-          ]
-            .filter(Boolean)
-            .join(" ")}
-        >
-          <Badge tone={level}>{levelLabel}</Badge>
-        </span>
+        {levelLabel && (
+          <span
+            className={[
+              "absolute top-3.5 left-3.5 rounded-full",
+              image ? "backdrop-blur-[6px] backdrop-saturate-140 shadow-[0_2px_10px_rgba(8,26,15,0.45)]" : "",
+            ]
+              .filter(Boolean)
+              .join(" ")}
+          >
+            <Badge tone={level}>{levelLabel}</Badge>
+          </span>
+        )}
       </div>
       <div className="p-6 flex flex-col gap-3 flex-1">
         {category && (
           <span className="font-sans text-xs tracking-eyebrow uppercase text-accent-strong">{category}</span>
         )}
         <h3 className="m-0 font-serif font-semibold text-2xl leading-heading text-emerald-700">{title}</h3>
-        <div className="flex gap-4 mt-auto text-muted font-sans text-caption tracking-label">
-          {modality && (
-            <span className="inline-flex items-center gap-1.5">
-              <Icon name="map-pin" size={14} />
-              {modality}
-            </span>
-          )}
-          {duration && (
-            <span className="inline-flex items-center gap-1.5">
-              <Icon name="clock" size={14} />
-              {duration}
-            </span>
-          )}
-        </div>
+        {(modality || duration) && (
+          <div className="flex gap-4 mt-auto text-muted font-sans text-caption tracking-label">
+            {modality && (
+              <span className="inline-flex items-center gap-1.5">
+                <Icon name="map-pin" size={14} />
+                {modality}
+              </span>
+            )}
+            {duration && (
+              <span className="inline-flex items-center gap-1.5">
+                <Icon name="clock" size={14} />
+                {duration}
+              </span>
+            )}
+          </div>
+        )}
         {price && (
-          <div className="mt-2 pt-3 border-t border-divider font-display text-xl text-accent-strong tracking-[0.04em]">
+          <div className={`${modality || duration ? "mt-2" : "mt-auto"} pt-3 border-t border-divider font-display text-xl text-accent-strong tracking-[0.04em]`}>
             {price}
           </div>
         )}
