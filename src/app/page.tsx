@@ -88,24 +88,6 @@ export default async function HomePage() {
               labiales y más — desde cero hasta nivel profesional.
             </p>
           </Reveal>
-          <Reveal delay={0.3} className="mt-2">
-            <div className="flex gap-3.5 flex-wrap justify-center">
-              <Link href="/cursos">
-                <Button
-                  variant="solid"
-                  size="lg"
-                  iconLeft={<Icon name="leaf" size={18} color="var(--gold-300)" />}
-                >
-                  Explorar cursos
-                </Button>
-              </Link>
-              <Link href="/talleres">
-                <Button variant="secondary" size="lg">
-                  Ver talleres
-                </Button>
-              </Link>
-            </div>
-          </Reveal>
         </div>
       </section>
 
