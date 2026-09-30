@@ -76,7 +76,7 @@ export default async function HomePage() {
             </span>
           </Reveal>
           <Reveal delay={0.1}>
-            <h1 className="m-0 font-serif font-semibold text-[clamp(40px,6vw,72px)] leading-[1.08] text-emerald-700">
+            <h1 className="m-0 font-serif font-semibold text-[clamp(40px,6vw,72px)] leading-[1.08] text-emerald-500">
               Aprende a crear tu propia
               <br />
               <em className="italic text-gold-600">cosmética natural</em>
@@ -116,7 +116,7 @@ export default async function HomePage() {
             <span className="text-accent-strong">
               <Icon name={icon} size={30} strokeWidth={1.3} />
             </span>
-            <h3 className="m-0 font-serif font-semibold text-2xl text-emerald-700">{title}</h3>
+            <h3 className="m-0 font-serif font-semibold text-2xl text-emerald-500">{title}</h3>
             <p className="m-0 font-sans text-[15px] leading-body text-muted">{description}</p>
           </div>
         ))}

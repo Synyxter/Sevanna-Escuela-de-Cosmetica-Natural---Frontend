@@ -37,7 +37,7 @@ export function Header() {
                 href={link.href}
                 aria-current={isActive(link.href) ? "page" : undefined}
                 className={[
-                  "inline-block font-sans text-label font-bold tracking-[0.12em] py-1.5 px-0.5 text-emerald-700",
+                  "inline-block font-sans text-label font-bold tracking-[0.12em] py-1.5 px-0.5 text-emerald-500",
                   "border-b-[3px] transition-colors duration-140 ease-standard",
                   isActive(link.href) ? "border-gold-600" : "border-transparent",
                 ].join(" ")}
@@ -84,7 +84,7 @@ export function Header() {
                   aria-current={isActive(link.href) ? "page" : undefined}
                   onClick={() => setOpen(false)}
                   className={[
-                    "block font-sans text-label font-bold tracking-[0.12em] py-2.5 px-0.5 text-emerald-700",
+                    "block font-sans text-label font-bold tracking-[0.12em] py-2.5 px-0.5 text-emerald-500",
                     "border-b border-transparent transition-colors duration-140 ease-standard",
                     isActive(link.href) ? "text-gold-600" : "",
                   ].join(" ")}

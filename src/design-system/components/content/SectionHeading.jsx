@@ -35,7 +35,7 @@ export function SectionHeading({
         <h2
           className={[
             "m-0 font-serif font-semibold text-h2 leading-heading",
-            light ? "text-emerald-900" : "text-strong",
+            light ? "text-emerald-500" : "text-strong",
           ].join(" ")}
         >
           {title}

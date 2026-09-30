@@ -66,7 +66,7 @@ export function CourseCard({
         {category && (
           <span className="font-sans text-xs tracking-eyebrow uppercase text-accent-strong">{category}</span>
         )}
-        <h3 className="m-0 font-serif font-semibold text-2xl leading-heading text-emerald-700">{title}</h3>
+        <h3 className="m-0 font-serif font-semibold text-2xl leading-heading text-emerald-500">{title}</h3>
         {(modality || duration) && (
           <div className="flex gap-4 mt-auto text-muted font-sans text-caption tracking-label">
             {modality && (

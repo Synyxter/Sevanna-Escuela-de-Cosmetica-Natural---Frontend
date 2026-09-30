@@ -54,7 +54,7 @@ export default async function EnrollPage({ params }: Params) {
 
         <div className="flex flex-col gap-3 items-center">
           <Badge tone="gold">Último paso</Badge>
-          <h1 className="m-0 font-serif font-semibold text-[clamp(30px,4vw,44px)] leading-[1.12] text-emerald-900">
+          <h1 className="m-0 font-serif font-semibold text-[clamp(30px,4vw,44px)] leading-[1.12] text-emerald-500">
             Para completar tu inscripción, contáctanos por WhatsApp
           </h1>
           <p className="m-0 max-w-105 font-serif text-xl leading-[1.55] text-ink-700">

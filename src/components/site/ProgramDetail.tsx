@@ -49,7 +49,7 @@ export function ProgramDetail({
                 <Badge tone={program.level}>{program.levelLabel}</Badge>
                 <Badge tone="gold">{program.category}</Badge>
               </div>
-              <h1 className="m-0 font-serif font-semibold text-[clamp(34px,4.6vw,54px)] leading-[1.1] text-emerald-900">
+              <h1 className="m-0 font-serif font-semibold text-[clamp(34px,4.6vw,54px)] leading-[1.1] text-emerald-500">
                 {program.title}
               </h1>
               <p className="m-0 font-serif text-[22px] leading-body text-ink-700">{program.blurb}</p>
