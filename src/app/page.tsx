@@ -63,27 +63,25 @@ export default async function HomePage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative py-20 sm:py-26 lg:py-32 px-5 sm:px-8 lg:px-10 text-center overflow-hidden bg-cover bg-center bg-[url(/sevanna/hero-products-celular.png)] sm:bg-[url(/sevanna/hero-products-tablet.png)] lg:bg-[url(/sevanna/hero-products.png)]">
-        {/* Separate layer so each breakpoint only swaps the photo, not the gradient. */}
-        <div
-          aria-hidden
-          className="absolute inset-0 bg-[radial-gradient(ellipse_62%_78%_at_center,rgba(250,246,238,0.86)_0%,rgba(250,246,238,0.62)_40%,rgba(250,246,238,0.28)_70%,rgba(250,246,238,0.05)_100%)]"
-        />
-        <div className="relative max-w-205 mx-auto flex flex-col items-center gap-5.5">
+      <section className="relative flex items-center lg:min-h-[41.6vw] py-20 sm:py-26 lg:py-32 px-5 sm:px-8 lg:px-24 xl:px-32 text-left overflow-hidden bg-cover bg-center bg-[url(/sevanna/hero-products-celular.png)] sm:bg-[url(/sevanna/hero-products-tablet.png)] lg:bg-[url(/sevanna/hero-products.png)]">
+        {/* min-h matches the desktop photo's 2.4:1 ratio so it shows whole instead of being cropped.
+            The photo scales with the viewport, so the title and paragraph widths are sized in vw
+            to stay clear of the products that start around the middle of the image. */}
+        <div className="max-w-2xl lg:max-w-none flex flex-col items-start gap-6">
           <Reveal>
-            <span className="font-sans text-xs font-semibold tracking-eyebrow uppercase text-gold-600">
+            <span className="font-sans text-[15px] font-semibold tracking-eyebrow uppercase text-gold-600">
               Academia de Cosmética Natural
             </span>
           </Reveal>
           <Reveal delay={0.1}>
-            <h1 className="m-0 font-serif font-semibold text-[clamp(40px,6vw,72px)] leading-[1.08] text-emerald-500">
+            <h1 className="m-0 font-serif font-semibold text-[clamp(32px,4.8vw,70px)] lg:text-[clamp(32px,calc(5.1vw-12px),70px)] leading-[1.08] text-emerald-500">
               Aprende a crear tu propia
               <br />
-              <em className="italic text-gold-600">cosmética natural</em>
+              <em className="not-italic text-gold-600">cosmética natural</em>
             </h1>
           </Reveal>
           <Reveal delay={0.2}>
-            <p className="mx-auto max-w-140 font-serif text-[22px] leading-body text-emerald-700">
+            <p className="m-0 max-w-160 lg:max-w-[calc(46vw-6rem)] xl:max-w-[calc(46vw-8rem)] font-serif text-[21px] lg:text-[clamp(18px,1.65vw,24px)] leading-body text-emerald-700">
               Cursos y talleres presenciales, virtuales e híbridos para elaborar velas, jabones,
               labiales y más — desde cero hasta nivel profesional.
             </p>
