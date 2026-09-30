@@ -9,7 +9,7 @@ import { getTalleres } from "@/lib/talleres";
 const FEATURES: [string, string, string][] = [
   ["leaf", "Ingredientes naturales", "Trabaja con ceras, aceites y activos botánicos reales."],
   ["flask-conical", "Formulación práctica", "Aprende a calcular, medir y ajustar cada receta."],
-  ["award", "Nivel a tu medida", "Rutas básicas, intermedias y avanzadas."],
+  ["award", "Cursos certificados", "Certificados por Sevanna Academy y aprobados por el Ministerio de Educación."],
 ];
 
 function FeaturedRow({
