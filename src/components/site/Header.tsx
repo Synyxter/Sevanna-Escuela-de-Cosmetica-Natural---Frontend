@@ -4,7 +4,8 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Button, IconButton, Icon } from "@/design-system";
+import { Button, IconButton } from "@/design-system";
+import { WHATSAPP_NUMBER } from "@/lib/config";
 
 const LINKS = [
   { href: "/", label: "Inicio" },
@@ -12,6 +13,15 @@ const LINKS = [
   { href: "/talleres", label: "Talleres" },
   { href: "/nosotros", label: "Nosotros" },
 ];
+
+const WHATSAPP_LINK = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+  "¡Hola Sevanna! Quiero más información sobre sus cursos y talleres.",
+)}`;
+
+const WHATSAPP_ICON = (
+  // eslint-disable-next-line @next/next/no-img-element
+  <img src="https://cdn.simpleicons.org/whatsapp/E3C072" alt="" width={16} height={16} />
+);
 
 export function Header() {
   const pathname = usePathname();
@@ -50,16 +60,11 @@ export function Header() {
       </nav>
 
       <div className="hidden lg:flex items-center gap-4">
-        <Link href="/cursos">
-          <Button
-            variant="primary"
-            size="sm"
-            className="py-3.5!"
-            iconLeft={<Icon name="leaf" size={16} color="var(--gold-300)" />}
-          >
-            Ver cursos
+        <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer">
+          <Button variant="primary" size="sm" className="py-3.5!" iconLeft={WHATSAPP_ICON}>
+            Escríbenos
           </Button>
-        </Link>
+        </a>
       </div>
 
       <IconButton
@@ -94,16 +99,17 @@ export function Header() {
               </li>
             ))}
           </ul>
-          <Link href="/cursos" onClick={() => setOpen(false)} className="mt-2">
-            <Button
-              variant="primary"
-              size="sm"
-              fullWidth
-              iconLeft={<Icon name="leaf" size={16} color="var(--gold-300)" />}
-            >
-              Ver cursos
+          <a
+            href={WHATSAPP_LINK}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => setOpen(false)}
+            className="mt-2"
+          >
+            <Button variant="primary" size="sm" fullWidth iconLeft={WHATSAPP_ICON}>
+              Escríbenos
             </Button>
-          </Link>
+          </a>
         </nav>
       )}
     </header>
