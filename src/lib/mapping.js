@@ -13,6 +13,16 @@ const MODALITY_LABEL = {
   HYBRID: "Híbrido",
 };
 
+// Course images live under public/sevanna; the API sends paths relative to
+// that folder (e.g. "/images/cursos/curso1.jpg"). Absolute URLs pass through.
+const IMAGE_BASE = "/sevanna";
+
+export function resolveImageUrl(url) {
+  if (!url) return undefined;
+  if (/^(https?:)?\/\//.test(url) || url.startsWith(IMAGE_BASE + "/")) return url;
+  return `${IMAGE_BASE}/${url.replace(/^\/+/, "")}`;
+}
+
 export function formatPrice(price, currency) {
   const amount = Math.round(Number(price));
   if (!Number.isFinite(amount)) return String(price ?? "");
@@ -44,7 +54,7 @@ export function toCatalogItem(course) {
     // Only the detail endpoint returns duration; list items simply omit it.
     duration: course.duration ?? "",
     price: formatPrice(course.price, course.currency),
-    image: course.image_url ?? undefined,
+    image: resolveImageUrl(course.image_url),
     blurb: course.short_description ?? "",
   };
 }
