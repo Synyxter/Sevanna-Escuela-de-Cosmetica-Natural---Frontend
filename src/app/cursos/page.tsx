@@ -16,7 +16,7 @@ export default async function CoursesPage() {
 
   return (
     <>
-      <section className="pt-18 px-5 sm:px-8 lg:px-10 pb-14 text-center bg-[linear-gradient(180deg,var(--cream-50),var(--cream-100))]">
+      <section className="pt-18 pb-14 px-5 sm:px-8 lg:px-10 text-center bg-[radial-gradient(ellipse_50%_80%_at_center,rgba(250,246,238,0.88)_0%,rgba(250,246,238,0.6)_55%,rgba(250,246,238,0)_100%),url(/sevanna/images/cursos/portadacursos.jpg)] bg-cover bg-center">
         <div className="flex justify-center">
           <SectionHeading
             light

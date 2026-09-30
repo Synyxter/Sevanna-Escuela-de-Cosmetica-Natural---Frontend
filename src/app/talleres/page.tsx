@@ -16,7 +16,7 @@ export default async function TalleresPage() {
 
   return (
     <>
-      <section className="pt-18 px-5 sm:px-8 lg:px-10 pb-14 text-center bg-[linear-gradient(180deg,var(--cream-50),var(--cream-100))]">
+      <section className="pt-18 pb-14 px-5 sm:px-8 lg:px-10 text-center bg-[url(/sevanna/images/cursos/portadatalleres.jpg)] bg-cover bg-center">
         <div className="flex justify-center">
           <SectionHeading
             light
