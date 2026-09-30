@@ -32,9 +32,9 @@ const COLUMNS: { heading: string; links: FooterLink[] }[] = [
 
 const SOCIALS: { slug: string; label: string; href: string }[] = [
   { slug: "whatsapp", label: "WhatsApp", href: `https://wa.me/${WHATSAPP_NUMBER}` },
-  { slug: "instagram", label: "Instagram", href: "#" },
-  { slug: "facebook", label: "Facebook", href: "#" },
-  { slug: "tiktok", label: "TikTok", href: "#" },
+  { slug: "instagram", label: "Instagram", href: "https://www.instagram.com/sevanna_academy/" },
+  { slug: "facebook", label: "Facebook", href: "https://www.facebook.com/profile.php?id=61592336145524" },
+  { slug: "tiktok", label: "TikTok", href: "https://www.tiktok.com/@sevannacosme" },
 ];
 
 export function Footer() {
