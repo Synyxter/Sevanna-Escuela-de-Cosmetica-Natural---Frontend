@@ -63,8 +63,13 @@ export default async function HomePage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative py-20 sm:py-26 lg:py-32 px-5 sm:px-8 lg:px-10 text-center overflow-hidden bg-[radial-gradient(ellipse_62%_78%_at_center,rgba(250,246,238,0.86)_0%,rgba(250,246,238,0.62)_40%,rgba(250,246,238,0.28)_70%,rgba(250,246,238,0.05)_100%),url(/sevanna/hero-products.png)] bg-cover bg-center">
-        <div className="max-w-205 mx-auto flex flex-col items-center gap-5.5">
+      <section className="relative py-20 sm:py-26 lg:py-32 px-5 sm:px-8 lg:px-10 text-center overflow-hidden bg-cover bg-center bg-[url(/sevanna/hero-products-celular.png)] sm:bg-[url(/sevanna/hero-products-tablet.png)] lg:bg-[url(/sevanna/hero-products.png)]">
+        {/* Separate layer so each breakpoint only swaps the photo, not the gradient. */}
+        <div
+          aria-hidden
+          className="absolute inset-0 bg-[radial-gradient(ellipse_62%_78%_at_center,rgba(250,246,238,0.86)_0%,rgba(250,246,238,0.62)_40%,rgba(250,246,238,0.28)_70%,rgba(250,246,238,0.05)_100%)]"
+        />
+        <div className="relative max-w-205 mx-auto flex flex-col items-center gap-5.5">
           <Reveal>
             <span className="font-sans text-xs font-semibold tracking-eyebrow uppercase text-gold-600">
               Academia de Cosmética Natural
