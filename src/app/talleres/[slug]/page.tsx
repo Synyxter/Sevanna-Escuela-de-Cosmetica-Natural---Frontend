@@ -40,7 +40,6 @@ export default async function TallerPage({ params }: Params) {
       outlineEyebrow="Sobre el taller"
       outlineTitle="Lo que harás en el taller"
       includes={tallerIncludes}
-      downloadLabel="Descargar agenda (PDF)"
     />
   );
 }

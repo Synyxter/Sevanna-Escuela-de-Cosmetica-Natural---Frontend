@@ -40,7 +40,6 @@ export default async function CoursePage({ params }: Params) {
       outlineEyebrow="Sobre el curso"
       outlineTitle="Lo que aprenderás"
       includes={courseIncludes}
-      downloadLabel="Descargar temario (PDF)"
     />
   );
 }
