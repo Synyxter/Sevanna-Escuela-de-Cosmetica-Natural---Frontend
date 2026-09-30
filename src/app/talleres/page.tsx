@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { SectionHeading } from "@/design-system";
 import { Catalog } from "@/components/site/Catalog";
+import { Reveal } from "@/components/site/Reveal";
 import { safe } from "@/lib/api";
 import { getTalleres } from "@/lib/talleres";
 import { uniqueCategories } from "@/lib/mapping";
@@ -17,14 +18,14 @@ export default async function TalleresPage() {
   return (
     <>
       <section className="pt-18 pb-14 px-5 sm:px-8 lg:px-10 text-center bg-[url(/sevanna/images/cursos/portadatalleres.jpg)] bg-cover bg-center">
-        <div className="flex justify-center">
+        <Reveal className="flex justify-center">
           <SectionHeading
             light
             eyebrow="Talleres"
             title="Crea en una sola sesión"
             subtitle="Encuentros cortos y guiados para elaborar tu producto y llevártelo el mismo día."
           />
-        </div>
+        </Reveal>
       </section>
       {talleres ? (
         <Catalog items={talleres} categories={uniqueCategories(talleres)} basePath="/talleres" />

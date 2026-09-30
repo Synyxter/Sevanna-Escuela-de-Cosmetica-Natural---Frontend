@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import Link from "next/link";
 import { CourseCard, Select } from "@/design-system";
+import { Reveal } from "@/components/site/Reveal";
 
 const SORTS = ["Más recientes", "Precio: menor", "Precio: mayor", "Duración"] as const;
 
@@ -52,7 +53,7 @@ export function Catalog({
 
   return (
     <section className="max-w-content mx-auto pt-8 px-5 sm:px-8 lg:px-10 pb-24">
-      <div className="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-end justify-start gap-4 mb-9">
+      <Reveal className="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-end justify-start gap-4 mb-9">
         <p className="m-0 sm:mr-auto sm:py-3.25 font-sans text-sm text-muted">
           {filteredSorted.length === 1
             ? "Mostrando 1 resultado"
@@ -74,13 +75,16 @@ export function Catalog({
             onChange={(e) => setSort(e.target.value as (typeof SORTS)[number])}
           />
         </div>
-      </div>
+      </Reveal>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-7">
-        {filteredSorted.map((item) => (
-          <Link key={item.slug} href={`${basePath}/${item.slug}`} className="no-underline">
-            <CourseCard title={item.title} price={item.price} image={item.image} className="h-full cursor-pointer" />
-          </Link>
+      {/* Keyed by filter + sort so the grid re-animates whenever the selection changes. */}
+      <div key={`${category}-${sort}`} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-7">
+        {filteredSorted.map((item, i) => (
+          <Reveal key={item.slug} delay={(i % 3) * 0.12} className="h-full">
+            <Link href={`${basePath}/${item.slug}`} className="block h-full no-underline">
+              <CourseCard title={item.title} price={item.price} image={item.image} className="h-full cursor-pointer" />
+            </Link>
+          </Reveal>
         ))}
       </div>
 
