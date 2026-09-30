@@ -22,7 +22,7 @@ export default function AboutPage() {
               title="Sobre Sevanna"
             />
           </Reveal>
-          <div className="mt-7 flex flex-col gap-5 font-serif text-xl leading-[1.7] text-ink-700">
+          <div className="mt-7 flex flex-col gap-5 font-serif text-xl leading-[1.7] text-emerald-700">
             <Reveal delay={0.12}>
               <p>
                 Sevanna es una academia especializada en cosmética natural. Ofrecemos cursos y talleres
@@ -50,7 +50,7 @@ export default function AboutPage() {
               sizes="(min-width: 1024px) 420px, 100vw"
               className="w-full h-auto rounded-lg border border-hairline"
             />
-            <figcaption className="mt-4 text-center font-serif italic text-lg text-ink-700">
+            <figcaption className="mt-4 text-center font-serif italic text-lg text-emerald-700">
               Martha Cartagena, fundadora de Sevanna
             </figcaption>
           </figure>
