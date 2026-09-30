@@ -33,53 +33,56 @@ export function Header() {
   return (
     <header
       role="banner"
-      className="fixed top-0 left-0 right-0 w-full z-20 flex items-center justify-between py-3.5 px-5 sm:px-7 bg-cream-50 border-b border-hairline"
+      className="fixed top-0 left-0 right-0 w-full z-20 py-3.5 px-5 sm:px-8 lg:px-24 xl:px-32 bg-cream-50 border-b border-hairline"
     >
-      <Link href="/" aria-label="Sevanna — ir al inicio" className="flex items-center">
-        <Image src="/sevanna/logo-wordmark.png" alt="Sevanna" width={972} height={610} priority className="w-auto h-16" />
-      </Link>
+      {/* Same side padding as the hero so the logo lines up with its text. */}
+      <div className="flex items-center justify-between">
+        <Link href="/" aria-label="Sevanna — ir al inicio" className="flex items-center">
+          <Image src="/sevanna/logo-wordmark.png" alt="Sevanna" width={972} height={610} priority className="w-auto h-16" />
+        </Link>
 
-      <nav aria-label="Navegación principal" className="hidden lg:block absolute left-1/2 -translate-x-1/2">
-        <ul className="flex gap-6 list-none m-0 p-0">
-          {LINKS.map((link, i) => (
-            <li key={`${link.href}-${i}`}>
-              <Link
-                href={link.href}
-                aria-current={isActive(link.href) ? "page" : undefined}
-                className={[
-                  "inline-block font-sans text-label font-bold tracking-[0.12em] py-1.5 px-0.5 text-emerald-500",
-                  "border-b-[3px] transition-colors duration-140 ease-standard",
-                  isActive(link.href) ? "border-gold-600" : "border-transparent",
-                ].join(" ")}
-              >
-                {link.label}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </nav>
+        <nav aria-label="Navegación principal" className="hidden lg:block absolute left-1/2 -translate-x-1/2">
+          <ul className="flex gap-14 xl:gap-20 list-none m-0 p-0">
+            {LINKS.map((link, i) => (
+              <li key={`${link.href}-${i}`}>
+                <Link
+                  href={link.href}
+                  aria-current={isActive(link.href) ? "page" : undefined}
+                  className={[
+                    "inline-block font-sans text-[15px] font-bold tracking-[0.12em] py-1.5 px-0.5 text-emerald-500",
+                    "border-b-[3px] transition-colors duration-140 ease-standard",
+                    isActive(link.href) ? "border-gold-600" : "border-transparent",
+                  ].join(" ")}
+                >
+                  {link.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
 
-      <div className="hidden lg:flex items-center gap-4">
-        <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer">
-          <Button variant="primary" size="sm" className="py-3.5!" iconLeft={WHATSAPP_ICON}>
-            Escríbenos
-          </Button>
-        </a>
+        <div className="hidden lg:flex items-center gap-4">
+          <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer">
+            <Button variant="primary" size="sm" className="py-3.5!" iconLeft={WHATSAPP_ICON}>
+              Escríbenos
+            </Button>
+          </a>
+        </div>
+
+        <IconButton
+          name={open ? "x" : "menu"}
+          label={open ? "Cerrar menú" : "Abrir menú"}
+          variant="ghost"
+          className="lg:hidden"
+          aria-expanded={open}
+          onClick={() => setOpen((o) => !o)}
+        />
       </div>
-
-      <IconButton
-        name={open ? "x" : "menu"}
-        label={open ? "Cerrar menú" : "Abrir menú"}
-        variant="ghost"
-        className="lg:hidden"
-        aria-expanded={open}
-        onClick={() => setOpen((o) => !o)}
-      />
 
       {open && (
         <nav
           aria-label="Navegación móvil"
-          className="lg:hidden absolute top-full left-0 right-0 flex flex-col gap-1 py-4 px-5 bg-cream-50 border-b border-hairline"
+          className="lg:hidden absolute top-full left-0 right-0 flex flex-col gap-1 py-4 px-5 sm:px-8 bg-cream-50 border-b border-hairline"
         >
           <ul className="flex flex-col list-none m-0 p-0">
             {LINKS.map((link, i) => (
@@ -89,7 +92,7 @@ export function Header() {
                   aria-current={isActive(link.href) ? "page" : undefined}
                   onClick={() => setOpen(false)}
                   className={[
-                    "block font-sans text-label font-bold tracking-[0.12em] py-2.5 px-0.5 text-emerald-500",
+                    "block font-sans text-[15px] font-bold tracking-[0.12em] py-2.5 px-0.5 text-emerald-500",
                     "border-b border-transparent transition-colors duration-140 ease-standard",
                     isActive(link.href) ? "text-gold-600" : "",
                   ].join(" ")}
