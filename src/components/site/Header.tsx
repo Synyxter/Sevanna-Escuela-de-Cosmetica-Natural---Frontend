@@ -20,7 +20,7 @@ const WHATSAPP_LINK = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponen
 
 const WHATSAPP_ICON = (
   // eslint-disable-next-line @next/next/no-img-element
-  <img src="https://cdn.simpleicons.org/whatsapp/E3C072" alt="" width={16} height={16} />
+  <img src="https://cdn.simpleicons.org/whatsapp/E3C072" alt="" width={18} height={18} />
 );
 
 export function Header() {
@@ -63,7 +63,7 @@ export function Header() {
 
         <div className="hidden lg:flex items-center gap-4">
           <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer">
-            <Button variant="primary" size="sm" className="py-3.5!" iconLeft={WHATSAPP_ICON}>
+            <Button variant="primary" size="sm" className="py-3.5! text-[15px]!" iconLeft={WHATSAPP_ICON}>
               Escríbenos
             </Button>
           </a>
@@ -73,7 +73,7 @@ export function Header() {
           name={open ? "x" : "menu"}
           label={open ? "Cerrar menú" : "Abrir menú"}
           variant="ghost"
-          className="lg:hidden"
+          className="lg:hidden border-2! text-emerald-500!"
           aria-expanded={open}
           onClick={() => setOpen((o) => !o)}
         />
@@ -109,7 +109,7 @@ export function Header() {
             onClick={() => setOpen(false)}
             className="mt-2"
           >
-            <Button variant="primary" size="sm" fullWidth iconLeft={WHATSAPP_ICON}>
+            <Button variant="primary" size="sm" fullWidth className="text-[15px]!" iconLeft={WHATSAPP_ICON}>
               Escríbenos
             </Button>
           </a>
