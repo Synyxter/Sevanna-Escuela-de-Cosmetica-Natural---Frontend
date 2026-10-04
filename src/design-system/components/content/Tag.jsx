@@ -3,28 +3,19 @@
 import React from "react";
 
 /** Filter/category chip. Selectable variant used in course filters. */
-export function Tag({ children, selected = false, onClick, style = {} }) {
+export function Tag({ children, selected = false, onClick, className = "" }) {
   return (
     <button
       type="button"
       onClick={onClick}
-      style={{
-        display: "inline-flex",
-        alignItems: "center",
-        gap: "var(--space-2)",
-        padding: "8px 16px",
-        borderRadius: "var(--radius-pill)",
-        cursor: "pointer",
-        fontFamily: "var(--font-sans)",
-        fontSize: "var(--fs-label)",
-        fontWeight: "var(--fw-medium)",
-        letterSpacing: "var(--ls-label)",
-        color: selected ? "var(--gold-100)" : "var(--text-muted)",
-        background: selected ? "var(--emerald-700)" : "transparent",
-        border: `1px solid ${selected ? "transparent" : "var(--border-hairline)"}`,
-        transition: "all var(--dur-base) var(--ease-standard)",
-        ...style,
-      }}
+      className={[
+        "inline-flex items-center gap-2 py-2 px-4 rounded-full cursor-pointer border",
+        "font-sans text-label font-medium tracking-label transition-all duration-240 ease-standard",
+        selected ? "text-gold-100 bg-emerald-700 border-transparent" : "text-muted bg-transparent border-hairline",
+        className,
+      ]
+        .filter(Boolean)
+        .join(" ")}
     >
       {children}
     </button>

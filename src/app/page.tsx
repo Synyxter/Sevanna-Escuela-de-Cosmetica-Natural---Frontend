@@ -2,13 +2,14 @@ import Link from "next/link";
 import { Button, Icon, SectionHeading, CourseCard } from "@/design-system";
 import { Reveal } from "@/components/site/Reveal";
 import type { CatalogItem } from "@/components/site/Catalog";
-import { courses } from "@/lib/courses";
-import { talleres } from "@/lib/talleres";
+import { safe } from "@/lib/api";
+import { getCourses } from "@/lib/courses";
+import { getTalleres } from "@/lib/talleres";
 
 const FEATURES: [string, string, string][] = [
   ["leaf", "Ingredientes naturales", "Trabaja con ceras, aceites y activos botánicos reales."],
   ["flask-conical", "Formulación práctica", "Aprende a calcular, medir y ajustar cada receta."],
-  ["award", "Nivel a tu medida", "Rutas básicas, intermedias y avanzadas."],
+  ["award", "Cursos certificados", "Certificados por Sevanna Academy y aprobados por el Ministerio de Educación."],
 ];
 
 function FeaturedRow({
@@ -26,21 +27,23 @@ function FeaturedRow({
   basePath: string;
   ctaLabel: string;
 }) {
+  if (items.length === 0) return null;
+
   return (
-    <section style={{ padding: "40px 40px 32px", maxWidth: "var(--container)", margin: "0 auto" }}>
+    <section className="pt-10 px-5 sm:px-8 lg:px-10 pb-8 max-w-content mx-auto">
       <Reveal>
         <SectionHeading light eyebrow={eyebrow} title={title} subtitle={subtitle} />
       </Reveal>
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 28, marginTop: 44 }}>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-7 mt-11">
         {items.map((item, i) => (
           <Reveal key={item.slug} delay={i * 0.12}>
-            <Link href={`${basePath}/${item.slug}`} style={{ textDecoration: "none" }}>
-              <CourseCard {...item} style={{ height: "100%", cursor: "pointer" }} />
+            <Link href={`${basePath}/${item.slug}`} className="no-underline">
+              <CourseCard title={item.title} price={item.price} image={item.image} className="h-full cursor-pointer" />
             </Link>
           </Reveal>
         ))}
       </div>
-      <Reveal style={{ textAlign: "center", marginTop: 44 }}>
+      <Reveal className="text-center mt-11">
         <Link href={basePath}>
           <Button variant="secondary" iconRight={<Icon name="arrow-right" size={16} />}>
             {ctaLabel}
@@ -51,147 +54,58 @@ function FeaturedRow({
   );
 }
 
-export default function HomePage() {
+export default async function HomePage() {
+  const [courses, talleres] = await Promise.all([
+    safe(getCourses(), [] as CatalogItem[]),
+    safe(getTalleres(), [] as CatalogItem[]),
+  ]);
+
   return (
     <>
       {/* Hero */}
-      <section
-        style={{
-          position: "relative",
-          padding: "128px 40px",
-          textAlign: "center",
-          backgroundImage:
-            "radial-gradient(ellipse 62% 78% at center, rgba(250,246,238,0.86) 0%, rgba(250,246,238,0.62) 40%, rgba(250,246,238,0.28) 70%, rgba(250,246,238,0.05) 100%), url(/sevanna/hero-products.png)",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          overflow: "hidden",
-        }}
-      >
+      <section className="relative flex items-center sm:max-lg:justify-center max-sm:aspect-[941/1672] lg:min-h-[41.6vw] max-sm:py-0 py-20 sm:py-26 lg:py-32 px-5 sm:px-8 lg:px-24 xl:px-32 text-left sm:max-lg:text-center overflow-hidden bg-cover bg-center bg-[url(/sevanna/hero-products-celular.png)] sm:bg-[url(/sevanna/hero-products-tablet.png)] lg:bg-[url(/sevanna/hero-products.png)]">
+        {/* min-h matches the desktop photo's 2.4:1 ratio so it shows whole instead of being cropped.
+            The photo scales with the viewport, so the title and paragraph widths are sized in vw
+            to stay clear of the products that start around the middle of the image.
+            On phones the section takes the mobile photo's ratio so the text sits in its empty middle;
+            on tablets the text is centered in the open space between the corner products. */}
+        {/* Phones and tablets: a soft cream veil, in the photo's own tone, behind the text block so it
+            reads clearly over the shadows and petals without looking like a box. */}
         <div
-          style={{
-            maxWidth: 820,
-            margin: "0 auto",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            gap: 22,
-          }}
-        >
+          aria-hidden="true"
+          className="lg:hidden pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_95%_34%_at_45%_50%,rgba(250,246,238,0.72)_0%,rgba(250,246,238,0.5)_45%,rgba(250,246,238,0)_100%)] sm:bg-[radial-gradient(ellipse_52%_46%_at_50%_50%,rgba(250,246,238,0.72)_0%,rgba(250,246,238,0.5)_45%,rgba(250,246,238,0)_100%)]"
+        />
+        <div className="relative max-w-2xl lg:max-w-none flex flex-col items-start sm:max-lg:items-center max-sm:gap-4 gap-6">
           <Reveal>
-            <span
-              style={{
-                fontFamily: "var(--font-sans)",
-                fontSize: 12,
-                fontWeight: 600,
-                letterSpacing: "0.32em",
-                textTransform: "uppercase",
-                color: "var(--gold-600)",
-              }}
-            >
+            <span className="font-sans max-md:text-[13px] text-[15px] font-semibold tracking-eyebrow uppercase max-sm:text-gold-700 text-gold-600">
               Academia de Cosmética Natural
             </span>
           </Reveal>
           <Reveal delay={0.1}>
-            <h1
-              style={{
-                margin: 0,
-                fontFamily: "var(--font-serif)",
-                fontWeight: 600,
-                fontSize: "clamp(40px,6vw,72px)",
-                lineHeight: 1.08,
-                color: "var(--emerald-700)",
-              }}
-            >
+            <h1 className="m-0 font-serif font-semibold max-sm:text-[clamp(26px,7.6vw,32px)] text-[clamp(32px,4.8vw,70px)] lg:text-[clamp(32px,calc(5.1vw-12px),70px)] leading-[1.08] text-emerald-500">
               Aprende a crear tu propia
               <br />
-              <em style={{ fontStyle: "italic", color: "var(--gold-600)" }}>cosmética natural</em>
+              <em className="not-italic max-sm:text-gold-700 text-gold-600">cosmética natural</em>
             </h1>
           </Reveal>
           <Reveal delay={0.2}>
-            <p
-              style={{
-                margin: "0 auto",
-                maxWidth: 560,
-                fontFamily: "var(--font-serif)",
-                fontSize: 22,
-                lineHeight: 1.6,
-                color: "var(--emerald-700)",
-              }}
-            >
+            <p className="m-0 max-w-160 sm:max-lg:max-w-[min(35rem,72vw)] lg:max-w-[calc(46vw-6rem)] xl:max-w-[calc(46vw-8rem)] font-serif max-sm:text-lg text-[21px] lg:text-[clamp(18px,1.65vw,24px)] leading-body max-sm:text-emerald-900 text-emerald-700">
               Cursos y talleres presenciales, virtuales e híbridos para elaborar velas, jabones,
               labiales y más — desde cero hasta nivel profesional.
             </p>
-          </Reveal>
-          <Reveal delay={0.3} style={{ marginTop: 8 }}>
-            <div style={{ display: "flex", gap: 14, flexWrap: "wrap", justifyContent: "center" }}>
-              <Link href="/cursos">
-                <Button
-                  variant="solid"
-                  size="lg"
-                  iconLeft={<Icon name="leaf" size={18} color="var(--gold-300)" />}
-                >
-                  Explorar cursos
-                </Button>
-              </Link>
-              <Link href="/talleres">
-                <Button variant="secondary" size="lg">
-                  Ver talleres
-                </Button>
-              </Link>
-            </div>
           </Reveal>
         </div>
       </section>
 
       {/* Value props */}
-      <section
-        style={{
-          padding: "64px 40px",
-          maxWidth: "var(--container)",
-          margin: "0 auto",
-          display: "grid",
-          gridTemplateColumns: "repeat(3,1fr)",
-          gap: 28,
-        }}
-      >
+      <section className="py-16 px-5 sm:px-8 lg:px-10 max-w-content mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-7">
         {FEATURES.map(([icon, title, description]) => (
-          <div
-            key={title}
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              gap: 12,
-              padding: 28,
-              border: "1px solid var(--border-hairline)",
-              borderRadius: "var(--radius-lg)",
-              background: "var(--surface-card)",
-            }}
-          >
-            <span style={{ color: "var(--accent-strong)" }}>
+          <div key={title} className="flex flex-col gap-3 p-7 border border-hairline rounded-lg bg-card">
+            <span className="text-accent-strong">
               <Icon name={icon} size={30} strokeWidth={1.3} />
             </span>
-            <h3
-              style={{
-                margin: 0,
-                fontFamily: "var(--font-serif)",
-                fontWeight: 600,
-                fontSize: 24,
-                color: "var(--emerald-700)",
-              }}
-            >
-              {title}
-            </h3>
-            <p
-              style={{
-                margin: 0,
-                fontFamily: "var(--font-sans)",
-                fontSize: 15,
-                lineHeight: 1.6,
-                color: "var(--text-muted)",
-              }}
-            >
-              {description}
-            </p>
+            <h3 className="m-0 font-serif font-semibold text-2xl text-emerald-500">{title}</h3>
+            <p className="m-0 font-sans text-[15px] leading-body text-muted">{description}</p>
           </div>
         ))}
       </section>
@@ -215,34 +129,15 @@ export default function HomePage() {
       />
 
       {/* Quote band */}
-      <section style={{ padding: "80px 40px", marginTop: 56, background: "var(--emerald-600)", textAlign: "center" }}>
-        <div style={{ maxWidth: 720, margin: "0 auto" }}>
+      <section className="py-20 px-5 sm:px-8 lg:px-10 mt-14 bg-emerald-600 text-center">
+        <div className="max-w-180 mx-auto">
           <Reveal>
-            <h2
-              style={{
-                margin: 0,
-                fontFamily: "var(--font-sans)",
-                fontSize: 13,
-                fontWeight: 700,
-                letterSpacing: "0.28em",
-                textTransform: "uppercase",
-                color: "var(--gold-300)",
-              }}
-            >
+            <h2 className="m-0 font-sans text-label font-bold tracking-[0.28em] uppercase text-gold-300">
               Nuestra filosofía
             </h2>
           </Reveal>
           <Reveal delay={0.15}>
-            <p
-              style={{
-                fontFamily: "var(--font-serif)",
-                fontStyle: "italic",
-                fontSize: "clamp(26px,3.4vw,38px)",
-                lineHeight: 1.45,
-                color: "var(--cream-50)",
-                marginTop: 20,
-              }}
-            >
+            <p className="font-serif italic text-[clamp(26px,3.4vw,38px)] leading-[1.45] text-cream-50 mt-5">
               “Combinamos conocimiento, creatividad y elaboración artesanal para que cada estudiante
               formule con confianza.”
             </p>

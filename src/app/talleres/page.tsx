@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import { SectionHeading } from "@/design-system";
 import { Catalog } from "@/components/site/Catalog";
-import { tallerCategories, talleres } from "@/lib/talleres";
+import { Reveal } from "@/components/site/Reveal";
+import { safe } from "@/lib/api";
+import { getTalleres } from "@/lib/talleres";
+import { uniqueCategories } from "@/lib/mapping";
 
 export const metadata: Metadata = {
   title: "Talleres",
@@ -9,26 +12,28 @@ export const metadata: Metadata = {
     "Sesiones cortas y prácticas de cosmética natural: creas y te llevas tu producto el mismo día.",
 };
 
-export default function TalleresPage() {
+export default async function TalleresPage() {
+  const talleres = await safe(getTalleres(), null);
+
   return (
     <>
-      <section
-        style={{
-          padding: "72px 40px 56px",
-          textAlign: "center",
-          background: "linear-gradient(180deg,var(--cream-50),var(--cream-100))",
-        }}
-      >
-        <div style={{ display: "flex", justifyContent: "center" }}>
+      <section className="pt-18 pb-14 px-5 sm:px-8 lg:px-10 text-center bg-[url(/sevanna/images/cursos/portadatalleres.jpg)] bg-cover bg-center">
+        <Reveal className="flex justify-center">
           <SectionHeading
             light
             eyebrow="Talleres"
             title="Crea en una sola sesión"
             subtitle="Encuentros cortos y guiados para elaborar tu producto y llevártelo el mismo día."
           />
-        </div>
+        </Reveal>
       </section>
-      <Catalog items={talleres} categories={tallerCategories} basePath="/talleres" />
+      {talleres ? (
+        <Catalog items={talleres} categories={uniqueCategories(talleres)} basePath="/talleres" />
+      ) : (
+        <p className="max-w-content mx-auto pt-0 px-5 sm:px-8 lg:px-10 pb-24 text-center font-serif text-xl text-muted">
+          No pudimos cargar los talleres en este momento. Intenta de nuevo en unos minutos.
+        </p>
+      )}
     </>
   );
 }

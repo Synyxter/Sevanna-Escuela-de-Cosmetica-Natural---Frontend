@@ -9,6 +9,7 @@ module.exports = {
         "cursos",
         "talleres",
         "inscripcion",
+        "api",
         "home",
         "nosotros",
         "header",

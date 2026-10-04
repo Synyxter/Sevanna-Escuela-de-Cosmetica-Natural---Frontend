@@ -31,12 +31,11 @@ export interface ButtonProps
 export function Button(props: ButtonProps): ReactNode;
 
 export interface IconButtonProps
-  extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, "style" | "name"> {
+  extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, "name"> {
   name?: IconName;
   variant?: "ghost" | "gold" | "filled";
   size?: number;
   label?: string;
-  style?: CSSProperties;
 }
 export function IconButton(props: IconButtonProps): ReactNode;
 
@@ -74,7 +73,7 @@ export interface SwitchProps {
   defaultChecked?: boolean;
   disabled?: boolean;
   onChange?: (checked: boolean) => void;
-  style?: CSSProperties;
+  className?: string;
 }
 export function Switch(props: SwitchProps): ReactNode;
 
@@ -90,7 +89,7 @@ export type BadgeTone =
 export interface BadgeProps {
   tone?: BadgeTone;
   children?: ReactNode;
-  style?: CSSProperties;
+  className?: string;
 }
 export function Badge(props: BadgeProps): ReactNode;
 
@@ -98,7 +97,7 @@ export interface TagProps {
   children?: ReactNode;
   selected?: boolean;
   onClick?: () => void;
-  style?: CSSProperties;
+  className?: string;
 }
 export function Tag(props: TagProps): ReactNode;
 
@@ -107,7 +106,8 @@ export interface CardProps {
   padded?: boolean;
   light?: boolean;
   hover?: boolean;
-  style?: CSSProperties;
+  className?: string;
+  onClick?: () => void;
 }
 export function Card(props: CardProps): ReactNode;
 
@@ -121,7 +121,7 @@ export interface CourseCardProps {
   image?: string;
   category?: string;
   onClick?: () => void;
-  style?: CSSProperties;
+  className?: string;
 }
 export function CourseCard(props: CourseCardProps): ReactNode;
 
@@ -132,7 +132,7 @@ export interface SectionHeadingProps {
   align?: "center" | "left";
   ornament?: boolean;
   light?: boolean;
-  style?: CSSProperties;
+  className?: string;
 }
 export function SectionHeading(props: SectionHeadingProps): ReactNode;
 
@@ -143,6 +143,6 @@ export interface AccordionItem {
 export interface AccordionProps {
   items?: AccordionItem[];
   defaultOpen?: number;
-  style?: CSSProperties;
+  className?: string;
 }
 export function Accordion(props: AccordionProps): ReactNode;

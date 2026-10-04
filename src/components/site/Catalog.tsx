@@ -2,7 +2,8 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
-import { CourseCard, Select, Tag } from "@/design-system";
+import { CourseCard, Select } from "@/design-system";
+import { Reveal } from "@/components/site/Reveal";
 
 const SORTS = ["Más recientes", "Precio: menor", "Precio: mayor", "Duración"] as const;
 
@@ -40,7 +41,7 @@ export function Catalog({
   const [category, setCategory] = useState("Todos");
   const [sort, setSort] = useState<(typeof SORTS)[number]>("Más recientes");
 
-  const shown = useMemo(() => {
+  const filteredSorted = useMemo(() => {
     const filtered =
       category === "Todos" ? items : items.filter((c) => c.category === category);
     const sorted = [...filtered];
@@ -51,45 +52,44 @@ export function Catalog({
   }, [items, category, sort]);
 
   return (
-    <section style={{ maxWidth: "var(--container)", margin: "0 auto", padding: "32px 40px 96px" }}>
-      <div
-        style={{
-          display: "flex",
-          flexWrap: "wrap",
-          alignItems: "center",
-          justifyContent: "space-between",
-          gap: 16,
-          marginBottom: 36,
-        }}
-      >
-        <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
-          {categories.map((c) => (
-            <Tag key={c} selected={category === c} onClick={() => setCategory(c)}>
-              {c}
-            </Tag>
-          ))}
-        </div>
-        <div style={{ width: 200 }}>
+    <section className="max-w-content mx-auto pt-8 px-5 sm:px-8 lg:px-10 pb-24">
+      <Reveal className="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-end justify-start gap-4 mb-9">
+        <p className="m-0 sm:mr-auto sm:py-3.25 font-sans text-sm text-muted">
+          {filteredSorted.length === 1
+            ? "Mostrando 1 resultado"
+            : `Mostrando los ${filteredSorted.length} resultados`}
+        </p>
+        <div className="w-full sm:w-48">
           <Select
+            label="Categoría"
+            options={categories}
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+          />
+        </div>
+        <div className="w-full sm:w-44">
+          <Select
+            label="Ordenar por"
             options={[...SORTS]}
             value={sort}
             onChange={(e) => setSort(e.target.value as (typeof SORTS)[number])}
           />
         </div>
-      </div>
+      </Reveal>
 
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 28 }}>
-        {shown.map((item) => (
-          <Link key={item.slug} href={`${basePath}/${item.slug}`} style={{ textDecoration: "none" }}>
-            <CourseCard {...item} style={{ height: "100%", cursor: "pointer" }} />
-          </Link>
+      {/* Keyed by filter + sort so the grid re-animates whenever the selection changes. */}
+      <div key={`${category}-${sort}`} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-7">
+        {filteredSorted.map((item, i) => (
+          <Reveal key={item.slug} delay={(i % 3) * 0.12} className="h-full">
+            <Link href={`${basePath}/${item.slug}`} className="block h-full no-underline">
+              <CourseCard title={item.title} price={item.price} image={item.image} className="h-full cursor-pointer" />
+            </Link>
+          </Reveal>
         ))}
       </div>
 
-      {shown.length === 0 && (
-        <p style={{ fontFamily: "var(--font-serif)", fontSize: 20, color: "var(--text-muted)" }}>
-          No hay resultados para esta categoría.
-        </p>
+      {filteredSorted.length === 0 && (
+        <p className="font-serif text-xl text-muted">No hay resultados para esta categoría.</p>
       )}
     </section>
   );

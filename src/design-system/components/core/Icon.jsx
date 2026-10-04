@@ -20,7 +20,8 @@ export function Icon({
   return (
     <span
       aria-hidden="true"
-      style={{ display: "inline-flex", color, width: size, height: size, ...style }}
+      className="inline-flex"
+      style={{ color, width: size, height: size, ...style }}
       {...rest}
     >
       <DynamicIcon name={name} size={size} strokeWidth={strokeWidth} />

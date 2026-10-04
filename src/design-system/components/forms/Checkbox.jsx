@@ -10,14 +10,11 @@ export function Checkbox({ label = "", checked, defaultChecked, disabled = false
   const on = isControlled ? checked : internal;
   return (
     <label
-      style={{
-        display: "inline-flex",
-        alignItems: "center",
-        gap: "var(--space-3)",
-        cursor: disabled ? "not-allowed" : "pointer",
-        opacity: disabled ? 0.55 : 1,
-        ...style,
-      }}
+      className={[
+        "inline-flex items-center gap-3",
+        disabled ? "cursor-not-allowed opacity-55" : "cursor-pointer",
+      ].join(" ")}
+      style={style}
     >
       <span
         onClick={() => {
@@ -25,27 +22,15 @@ export function Checkbox({ label = "", checked, defaultChecked, disabled = false
           if (!isControlled) setInternal(!on);
           if (onChange) onChange(!on);
         }}
-        style={{
-          width: 22,
-          height: 22,
-          flex: "0 0 22px",
-          display: "inline-flex",
-          alignItems: "center",
-          justifyContent: "center",
-          borderRadius: "var(--radius-xs)",
-          border: `1px solid ${on ? "transparent" : "var(--border-strong)"}`,
-          background: on ? "var(--gradient-gold)" : "var(--surface-inset)",
-          color: "var(--text-on-gold)",
-          transition: "background var(--dur-base) var(--ease-standard)",
-        }}
+        className={[
+          "inline-flex w-5.5 h-5.5 shrink-0 items-center justify-center rounded-xs border",
+          "text-on-gold transition-colors duration-240 ease-standard",
+          on ? "border-transparent bg-(image:--gradient-gold)" : "border-border-strong bg-inset",
+        ].join(" ")}
       >
         {on && <Icon name="check" size={15} strokeWidth={2.4} />}
       </span>
-      {label && (
-        <span style={{ fontFamily: "var(--font-sans)", fontSize: "var(--fs-body-sm)", color: "var(--text-body)" }}>
-          {label}
-        </span>
-      )}
+      {label && <span className="font-sans text-sm text-body">{label}</span>}
     </label>
   );
 }

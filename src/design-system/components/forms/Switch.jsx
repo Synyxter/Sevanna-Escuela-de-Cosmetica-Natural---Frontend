@@ -3,20 +3,19 @@
 import React from "react";
 
 /** Toggle switch — gold track when on. */
-export function Switch({ checked, defaultChecked, disabled = false, onChange, label = "", style = {} }) {
+export function Switch({ checked, defaultChecked, disabled = false, onChange, label = "", className = "" }) {
   const [internal, setInternal] = React.useState(!!defaultChecked);
   const isControlled = checked !== undefined;
   const on = isControlled ? checked : internal;
   return (
     <label
-      style={{
-        display: "inline-flex",
-        alignItems: "center",
-        gap: "var(--space-3)",
-        cursor: disabled ? "not-allowed" : "pointer",
-        opacity: disabled ? 0.55 : 1,
-        ...style,
-      }}
+      className={[
+        "inline-flex items-center gap-3",
+        disabled ? "cursor-not-allowed opacity-55" : "cursor-pointer",
+        className,
+      ]
+        .filter(Boolean)
+        .join(" ")}
     >
       <span
         onClick={() => {
@@ -24,36 +23,20 @@ export function Switch({ checked, defaultChecked, disabled = false, onChange, la
           if (!isControlled) setInternal(!on);
           if (onChange) onChange(!on);
         }}
-        style={{
-          width: 46,
-          height: 26,
-          flex: "0 0 46px",
-          borderRadius: "var(--radius-pill)",
-          position: "relative",
-          background: on ? "var(--gradient-gold)" : "var(--emerald-700)",
-          border: "1px solid var(--border-hairline)",
-          transition: "background var(--dur-base) var(--ease-standard)",
-        }}
+        className={[
+          "relative grow-0 shrink-0 w-11.5 h-6.5 rounded-full border border-hairline",
+          "transition-colors duration-240 ease-standard",
+          on ? "bg-(image:--gradient-gold)" : "bg-emerald-700",
+        ].join(" ")}
       >
         <span
-          style={{
-            position: "absolute",
-            top: 2,
-            left: on ? 22 : 2,
-            width: 20,
-            height: 20,
-            borderRadius: "var(--radius-pill)",
-            background: on ? "var(--emerald-950)" : "var(--gold-100)",
-            boxShadow: "var(--shadow-xs)",
-            transition: "left var(--dur-base) var(--ease-out)",
-          }}
+          className={[
+            "absolute top-0.5 w-5 h-5 rounded-full shadow-xs transition-[left] duration-240 ease-out",
+            on ? "left-5.5 bg-emerald-950" : "left-0.5 bg-gold-100",
+          ].join(" ")}
         />
       </span>
-      {label && (
-        <span style={{ fontFamily: "var(--font-sans)", fontSize: "var(--fs-body-sm)", color: "var(--text-body)" }}>
-          {label}
-        </span>
-      )}
+      {label && <span className="font-sans text-sm text-body">{label}</span>}
     </label>
   );
 }
