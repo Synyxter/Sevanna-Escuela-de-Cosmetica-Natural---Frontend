@@ -63,25 +63,33 @@ export default async function HomePage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative flex items-center lg:min-h-[41.6vw] py-20 sm:py-26 lg:py-32 px-5 sm:px-8 lg:px-24 xl:px-32 text-left overflow-hidden bg-cover bg-center bg-[url(/sevanna/hero-products-celular.png)] sm:bg-[url(/sevanna/hero-products-tablet.png)] lg:bg-[url(/sevanna/hero-products.png)]">
+      <section className="relative flex items-center sm:max-lg:justify-center max-sm:aspect-[941/1672] lg:min-h-[41.6vw] max-sm:py-0 py-20 sm:py-26 lg:py-32 px-5 sm:px-8 lg:px-24 xl:px-32 text-left sm:max-lg:text-center overflow-hidden bg-cover bg-center bg-[url(/sevanna/hero-products-celular.png)] sm:bg-[url(/sevanna/hero-products-tablet.png)] lg:bg-[url(/sevanna/hero-products.png)]">
         {/* min-h matches the desktop photo's 2.4:1 ratio so it shows whole instead of being cropped.
             The photo scales with the viewport, so the title and paragraph widths are sized in vw
-            to stay clear of the products that start around the middle of the image. */}
-        <div className="max-w-2xl lg:max-w-none flex flex-col items-start gap-6">
+            to stay clear of the products that start around the middle of the image.
+            On phones the section takes the mobile photo's ratio so the text sits in its empty middle;
+            on tablets the text is centered in the open space between the corner products. */}
+        {/* Phones and tablets: a soft cream veil, in the photo's own tone, behind the text block so it
+            reads clearly over the shadows and petals without looking like a box. */}
+        <div
+          aria-hidden="true"
+          className="lg:hidden pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_95%_34%_at_45%_50%,rgba(250,246,238,0.72)_0%,rgba(250,246,238,0.5)_45%,rgba(250,246,238,0)_100%)] sm:bg-[radial-gradient(ellipse_52%_46%_at_50%_50%,rgba(250,246,238,0.72)_0%,rgba(250,246,238,0.5)_45%,rgba(250,246,238,0)_100%)]"
+        />
+        <div className="relative max-w-2xl lg:max-w-none flex flex-col items-start sm:max-lg:items-center max-sm:gap-4 gap-6">
           <Reveal>
-            <span className="font-sans text-[15px] font-semibold tracking-eyebrow uppercase text-gold-600">
+            <span className="font-sans max-md:text-[13px] text-[15px] font-semibold tracking-eyebrow uppercase max-sm:text-gold-700 text-gold-600">
               Academia de Cosmética Natural
             </span>
           </Reveal>
           <Reveal delay={0.1}>
-            <h1 className="m-0 font-serif font-semibold text-[clamp(32px,4.8vw,70px)] lg:text-[clamp(32px,calc(5.1vw-12px),70px)] leading-[1.08] text-emerald-500">
+            <h1 className="m-0 font-serif font-semibold max-sm:text-[clamp(26px,7.6vw,32px)] text-[clamp(32px,4.8vw,70px)] lg:text-[clamp(32px,calc(5.1vw-12px),70px)] leading-[1.08] text-emerald-500">
               Aprende a crear tu propia
               <br />
-              <em className="not-italic text-gold-600">cosmética natural</em>
+              <em className="not-italic max-sm:text-gold-700 text-gold-600">cosmética natural</em>
             </h1>
           </Reveal>
           <Reveal delay={0.2}>
-            <p className="m-0 max-w-160 lg:max-w-[calc(46vw-6rem)] xl:max-w-[calc(46vw-8rem)] font-serif text-[21px] lg:text-[clamp(18px,1.65vw,24px)] leading-body text-emerald-700">
+            <p className="m-0 max-w-160 sm:max-lg:max-w-[min(35rem,72vw)] lg:max-w-[calc(46vw-6rem)] xl:max-w-[calc(46vw-8rem)] font-serif max-sm:text-lg text-[21px] lg:text-[clamp(18px,1.65vw,24px)] leading-body max-sm:text-emerald-900 text-emerald-700">
               Cursos y talleres presenciales, virtuales e híbridos para elaborar velas, jabones,
               labiales y más — desde cero hasta nivel profesional.
             </p>
