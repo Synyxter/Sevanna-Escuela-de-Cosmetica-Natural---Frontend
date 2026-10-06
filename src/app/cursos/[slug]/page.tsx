@@ -5,6 +5,10 @@ import { ProgramDetail } from "@/components/site/ProgramDetail";
 import { ApiError, safe } from "@/lib/api";
 import { courseIncludes, getCourseDetail, getCourses } from "@/lib/courses";
 
+// Regenera la página como máximo cada 5 minutos aunque el fetch a la API falle
+// durante el build (si no, Next la congela como estática con el mensaje de error).
+export const revalidate = 300;
+
 type Params = { params: Promise<{ slug: string }> };
 
 export async function generateStaticParams() {

@@ -6,6 +6,10 @@ import { safe } from "@/lib/api";
 import { getCourses } from "@/lib/courses";
 import { getTalleres } from "@/lib/talleres";
 
+// Regenera la página como máximo cada 5 minutos aunque el fetch a la API falle
+// durante el build (si no, Next la congela como estática con el mensaje de error).
+export const revalidate = 300;
+
 const FEATURES: [string, string, string][] = [
   ["leaf", "Ingredientes naturales", "Trabaja con ceras, aceites y activos botánicos reales."],
   ["flask-conical", "Formulación práctica", "Aprende a calcular, medir y ajustar cada receta."],
