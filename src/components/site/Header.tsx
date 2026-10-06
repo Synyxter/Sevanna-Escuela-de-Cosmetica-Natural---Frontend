@@ -51,7 +51,7 @@ export function Header() {
                   className={[
                     "inline-block font-sans text-[15px] font-bold tracking-[0.12em] py-1.5 px-0.5 text-emerald-500",
                     "border-b-[3px] transition-colors duration-140 ease-standard",
-                    isActive(link.href) ? "border-gold-600" : "border-transparent",
+                    isActive(link.href) ? "border-gold-600" : "border-transparent hover:border-gold-600",
                   ].join(" ")}
                 >
                   {link.label}

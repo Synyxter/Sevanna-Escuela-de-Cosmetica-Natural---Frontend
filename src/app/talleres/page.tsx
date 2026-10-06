@@ -6,6 +6,10 @@ import { safe } from "@/lib/api";
 import { getTalleres } from "@/lib/talleres";
 import { uniqueCategories } from "@/lib/mapping";
 
+// Regenera la página como máximo cada 5 minutos aunque el fetch a la API falle
+// durante el build (si no, Next la congela como estática con el mensaje de error).
+export const revalidate = 300;
+
 export const metadata: Metadata = {
   title: "Talleres",
   description:

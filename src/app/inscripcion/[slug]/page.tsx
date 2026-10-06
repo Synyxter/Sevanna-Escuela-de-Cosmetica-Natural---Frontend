@@ -7,6 +7,10 @@ import { ApiError, safe } from "@/lib/api";
 import { WHATSAPP_NUMBER } from "@/lib/config";
 import { getAllPrograms, getProgramBySlug, kindMeta } from "@/lib/programs";
 
+// Regenera la página como máximo cada 5 minutos aunque el fetch a la API falle
+// durante el build (si no, Next la congela como estática con el mensaje de error).
+export const revalidate = 300;
+
 type Params = { params: Promise<{ slug: string }> };
 
 export async function generateStaticParams() {
