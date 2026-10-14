@@ -3,6 +3,7 @@ import { Button, Icon, SectionHeading, CourseCard } from "@/design-system";
 import { Reveal } from "@/components/site/Reveal";
 import type { CatalogItem } from "@/components/site/Catalog";
 import { safe } from "@/lib/api";
+import { WHATSAPP_NUMBER } from "@/lib/config";
 import { getCourses } from "@/lib/courses";
 import { getTalleres } from "@/lib/talleres";
 
@@ -14,7 +15,109 @@ const FEATURES: [string, string, string][] = [
   ["leaf", "Ingredientes naturales", "Trabaja con ceras, aceites y activos botánicos reales."],
   ["flask-conical", "Formulación práctica", "Aprende a calcular, medir y ajustar cada receta."],
   ["award", "Cursos certificados", "Certificados por Sevanna Academy y aprobados por el Ministerio de Educación."],
+  ["coffee", "Refrigerio y material", "Todos los cursos incluyen refrigerio y el material básico para tus prácticas."],
 ];
+
+const PROMO_MODULES: [string, string][] = [
+  ["Asepsia y desinfección", "Elaboración de productos para limpieza y desinfección."],
+  ["Limpieza del hogar e industrial", "Preparación de productos de limpieza para diferentes espacios."],
+  ["Aseo personal y cosméticos", "Fabricación de productos para el cuidado personal."],
+];
+
+const PROMO_DETAILS: [string, string, string][] = [
+  ["calendar-days", "Inicio", "17 de noviembre"],
+  ["clock", "Horario", "Sábados, 8:00 a. m. – 12:00 m."],
+  ["hourglass", "Duración", "3 meses"],
+];
+
+const PROMO_WHATSAPP = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+  "Hola, quiero información sobre el Curso 3x1 de fabricación de productos químicos.",
+)}`;
+
+function PromoCurso3x1() {
+  return (
+    <section className="px-5 sm:px-8 lg:px-10 pt-10 pb-4 max-w-content mx-auto">
+      <Reveal>
+        <div className="grid grid-cols-1 lg:grid-cols-[1.35fr_1fr] border border-hairline rounded-lg bg-card overflow-hidden">
+          {/* Contenido del curso */}
+          <div className="p-7 sm:p-10 lg:p-12 flex flex-col gap-6">
+            <span className="self-start font-sans text-[13px] font-semibold tracking-eyebrow uppercase text-gold-600">
+              Nuevo curso · Inscripciones abiertas
+            </span>
+            <h2 className="m-0 font-serif font-semibold text-[clamp(30px,3.6vw,44px)] leading-[1.1] text-emerald-500">
+              Curso 3x1: fabricación de
+              <br />
+              <em className="not-italic text-gold-600">productos químicos</em>
+            </h2>
+            <p className="m-0 font-serif text-xl leading-body text-emerald-700">
+              Aprende a elaborar productos para el hogar, para tu negocio y para el cuidado personal,
+              en una formación 100&nbsp;% práctica: mezclas, formulación, preparación y pruebas
+              básicas de calidad.
+            </p>
+
+            <ol className="m-0 p-0 list-none flex flex-col gap-5 mt-2">
+              {PROMO_MODULES.map(([title, description], i) => (
+                <li key={title} className="flex gap-5 items-start">
+                  <span className="shrink-0 font-serif text-[40px] leading-none text-gold-500">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <div className="flex flex-col gap-1 pt-1 border-l border-hairline pl-5">
+                    <h3 className="m-0 font-serif font-semibold text-[22px] text-emerald-500">{title}</h3>
+                    <p className="m-0 font-sans text-[15px] leading-body text-muted">{description}</p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </div>
+
+          {/* Inversión y horario */}
+          <div className="p-7 sm:p-10 lg:p-12 flex flex-col gap-6 bg-cream-100 border-t lg:border-t-0 lg:border-l border-hairline">
+            <div className="flex flex-col gap-1">
+              <span className="font-sans text-[13px] font-semibold tracking-eyebrow uppercase text-muted">
+                Inscripción
+              </span>
+              <span className="font-serif font-semibold text-[44px] leading-none text-emerald-500">$50.000</span>
+              <span className="font-sans text-[15px] text-muted mt-1">
+                Valor del curso: <strong className="text-emerald-700">$1.260.000</strong>
+              </span>
+            </div>
+
+            <div className="flex flex-col gap-2 p-5 rounded-lg border border-gold-300 bg-card">
+              <span className="flex items-center gap-2 font-sans text-[13px] font-semibold tracking-eyebrow uppercase text-gold-600">
+                <Icon name="wallet" size={16} /> Financiación sin intereses
+              </span>
+              <p className="m-0 font-sans text-[15px] leading-body text-emerald-700">
+                Abonos semanales desde <strong>$55.000</strong> o quincenales de <strong>$110.000</strong>.
+              </p>
+            </div>
+
+            <ul className="m-0 p-0 list-none flex flex-col gap-4">
+              {PROMO_DETAILS.map(([icon, label, value]) => (
+                <li key={label} className="flex items-center gap-4">
+                  <span className="text-accent-strong">
+                    <Icon name={icon} size={22} strokeWidth={1.4} />
+                  </span>
+                  <span className="flex flex-col">
+                    <span className="font-sans text-[12px] font-semibold tracking-eyebrow uppercase text-muted">
+                      {label}
+                    </span>
+                    <span className="font-sans text-base text-emerald-700">{value}</span>
+                  </span>
+                </li>
+              ))}
+            </ul>
+
+            <a href={PROMO_WHATSAPP} target="_blank" rel="noopener noreferrer" className="no-underline mt-auto">
+              <Button className="w-full" iconRight={<Icon name="arrow-right" size={16} />}>
+                Quiero inscribirme
+              </Button>
+            </a>
+          </div>
+        </div>
+      </Reveal>
+    </section>
+  );
+}
 
 function FeaturedRow({
   eyebrow,
@@ -102,7 +205,7 @@ export default async function HomePage() {
       </section>
 
       {/* Value props */}
-      <section className="py-16 px-5 sm:px-8 lg:px-10 max-w-content mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-7">
+      <section className="py-16 px-5 sm:px-8 lg:px-10 max-w-content mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-7">
         {FEATURES.map(([icon, title, description]) => (
           <div key={title} className="flex flex-col gap-3 p-7 border border-hairline rounded-lg bg-card">
             <span className="text-accent-strong">
@@ -131,6 +234,8 @@ export default async function HomePage() {
         basePath="/talleres"
         ctaLabel="Ver todos los talleres"
       />
+
+      <PromoCurso3x1 />
 
       {/* Quote band */}
       <section className="py-20 px-5 sm:px-8 lg:px-10 mt-14 bg-emerald-600 text-center">
