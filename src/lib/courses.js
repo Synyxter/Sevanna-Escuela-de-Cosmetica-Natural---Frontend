@@ -4,6 +4,8 @@
 import { getAllPrograms, getProgramBySlug } from "./programs";
 
 export const courseIncludes = [
+  "Refrigerio incluido",
+  "Material básico incluido",
   "Certificado de participación",
   "Acceso a recetario digital",
   "Acompañamiento del instructor",
