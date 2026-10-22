@@ -24,7 +24,7 @@ const SOCIALS: { slug: string; label: string; href: string }[] = [
   { slug: "whatsapp", label: "WhatsApp", href: `https://wa.me/${WHATSAPP_NUMBER}` },
   { slug: "instagram", label: "Instagram", href: "https://www.instagram.com/sevanna_academy/" },
   { slug: "facebook", label: "Facebook", href: "https://www.facebook.com/profile.php?id=61592336145524" },
-  { slug: "tiktok", label: "TikTok", href: "https://www.tiktok.com/@sevannacosme" },
+  { slug: "tiktok", label: "TikTok", href: "https://www.tiktok.com/@sevanna.cosmetica" },
 ];
 
 export function Footer() {
